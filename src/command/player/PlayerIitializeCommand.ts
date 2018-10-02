@@ -1,9 +1,9 @@
 export function PlayerInitializeCommand(): void {
-  const data: IStoredPlayerData = store.get('playerData');
+  const data: IStoredPlayerData = store.get('tic_tac_toe_playerData');
   if (!data) {
-    store.set('playerData', playerProxy.getSavableData());
+    store.set('tic_tac_toe_playerData', playerProxy.getSavableData());
   } else {
-    playerProxy.sync(store.get('playerData'));
+    playerProxy.sync(store.get('tic_tac_toe_playerData'));
   }
 }
 //

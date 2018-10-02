@@ -1,9 +1,11 @@
 export const UI_SCENE_SETTING_CLICK: string = 'UiSceneSettingClick';
 export const UI_SCENE_FAME_CLICK: string = 'UiSceneFameClick';
+export const UI_SCENE_PROFILE_CLICK: string = 'UiSceneProfileClick';
 //
 export class UIScene extends BaseScene {
   private settingsBtn: Button;
   private fameBtn: Button;
+  private profileBtn: Button;
 
   constructor(game: IGame) {
     super(game);
@@ -33,12 +35,18 @@ export class UIScene extends BaseScene {
     });
     //
     this.fameBtn = new Button(fameBtn);
-    this.fameBtn.position.set(GAME_WIDTH * 0.78, GAME_HEIGHT + 30);
+    this.fameBtn.position.set(GAME_WIDTH * 0.79, GAME_HEIGHT + 30);
     this.fameBtn.on('pointerup', () => {
       Register.emit(UI_SCENE_FAME_CLICK);
     });
     //
-    this.addChild(this.settingsBtn, this.fameBtn);
+    this.profileBtn = new Button(profileBtn);
+    this.profileBtn.position.set(GAME_WIDTH * 0.68, GAME_HEIGHT + 30);
+    this.profileBtn.on('pointerup', () => {
+      Register.emit(UI_SCENE_PROFILE_CLICK);
+    });
+    //
+    this.addChild(this.settingsBtn, this.fameBtn, this.profileBtn);
     this.interactiveChildren = false;
   }
 
@@ -95,5 +103,9 @@ import { GAME_HEIGHT, GAME_WIDTH } from '../../constants/Constants';
 import { IGame } from '../../constants/Types';
 import Register from '../../register/Register';
 import { Button } from '../../utils/Button';
-import { fameBtn, settingsBtn } from '../components/buttons/ButtonConfigs';
+import {
+  fameBtn,
+  profileBtn,
+  settingsBtn,
+} from '../components/buttons/ButtonConfigs';
 import BaseScene from './BaseScene';

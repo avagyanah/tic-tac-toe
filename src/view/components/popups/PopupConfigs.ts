@@ -30,7 +30,22 @@ const settingsPopup: IPopupConfig = {
   closeButton: { frame: Images.Close.Name },
 };
 //
-export { famePopup, settingsPopup };
+const profilePopup: IPopupConfig = {
+  title: {
+    offsetY: 35,
+    text: 'Profile',
+    style: {
+      fill: 0xa5927d,
+      fontFamily: 'Octavio',
+      fontSize: 80,
+    },
+  },
+  blocker: { color: $blockerColor, alpha: 0.8 },
+  bg: { frame: Images.PopupBg.Name, offsetX: CENTER.x, offsetY: CENTER.y },
+  closeButton: { frame: Images.Close.Name },
+};
+//
+export { famePopup, settingsPopup, profilePopup };
 
 export interface IPopupConfig {
   title?: ITitleConfig;

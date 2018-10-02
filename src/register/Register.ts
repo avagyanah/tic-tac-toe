@@ -48,6 +48,7 @@ export default class Register {
       UISettingsButtonClickCommand,
     );
     Register.eventsMap.set(UI_SCENE_FAME_CLICK, UIFameButtonClickCommand);
+    Register.eventsMap.set(UI_SCENE_PROFILE_CLICK, UIProfileButtonClickCommand);
     Register.eventsMap.set(LOBBY_SCENE_PLAY_CLICK, LobbyPlayButtonClickCommand);
     Register.eventsMap.set(LOBBY_SCENE_WAKE, LobbyWakeCompleteCommand);
     Register.eventsMap.set(LOBBY_SCENE_SLEEP, LobbySleepCompleteCommand);
@@ -76,6 +77,7 @@ import { PopupHideCompleteCommand } from '../command/scenes/popup/PopupHideCompl
 import { PreloadSceneLoadCompleteCommand } from '../command/scenes/prelaod/PreloadSceneLoadCompleteCommand';
 import { PreloadSceneLoadProgressCommand } from '../command/scenes/prelaod/PreloadSceneLoadProgressCommand';
 import { UIFameButtonClickCommand } from '../command/scenes/ui/UIFameButtonClickCommand';
+import { UIProfileButtonClickCommand } from '../command/scenes/ui/UIProfileButtonClickCommand';
 import { UISettingsButtonClickCommand } from '../command/scenes/ui/UISettingsButtonClickCommand';
 import { SETTINGS_POPUP_PLAYER_OPTION } from '../view/components/popups/settings/SettingsPopup';
 import { SQUARE_CLICK } from '../view/components/Square';
@@ -94,5 +96,6 @@ import {
 } from '../view/scenes/PreloadScene';
 import {
   UI_SCENE_FAME_CLICK,
+  UI_SCENE_PROFILE_CLICK,
   UI_SCENE_SETTING_CLICK,
 } from '../view/scenes/UIScene';

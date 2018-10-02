@@ -10,6 +10,7 @@ export function PopupHideCompleteCommand(popupClassName: string): void {
   switch (popupClassName) {
     case 'SettingsPopup':
     case 'FamePopup':
+    case 'ProfilePopup':
       window.TTT.sceneManager.wake(UI_SCENE);
       break;
     default:

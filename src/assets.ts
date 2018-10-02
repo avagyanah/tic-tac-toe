@@ -24,7 +24,7 @@ export namespace Images {
     public static Name: string = 'arrow';
     public static FileURL: string = 'assets/images/arrow.png';
     public static Extension: string = '.png';
-    public static Size: string = '27660';
+    public static Size: string = '1429';
   }
   export class Bg {
     public static Name: string = 'bg';
@@ -61,6 +61,12 @@ export namespace Images {
     public static FileURL: string = 'assets/images/popup-bg.png';
     public static Extension: string = '.png';
     public static Size: string = '83311';
+  }
+  export class ProfileIcon {
+    public static Name: string = 'profile-icon';
+    public static FileURL: string = 'assets/images/profile-icon.png';
+    public static Extension: string = '.png';
+    public static Size: string = '5947';
   }
   export class SettingsIcon {
     public static Name: string = 'settings-icon';

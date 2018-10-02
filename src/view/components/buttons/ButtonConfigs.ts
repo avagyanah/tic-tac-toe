@@ -16,6 +16,15 @@ const fameBtn: IButtonConfig = {
     },
   },
 };
+const profileBtn: IButtonConfig = {
+  upFrame: Images.ProfileIcon.Name,
+  clickSound: {
+    alias: Audios.Sounds.ClickSound.Name,
+    options: {
+      volume: 0.5,
+    },
+  },
+};
 const playBtn: IButtonConfig = {
   upFrame: Images.TransparentPixel.Name,
   anchor: new PIXI.Point(0.5, 0.5),
@@ -60,6 +69,7 @@ interface IClickSound {
 export {
   settingsBtn,
   fameBtn,
+  profileBtn,
   playBtn,
   settingsPreviousBtn,
   IButtonConfig,

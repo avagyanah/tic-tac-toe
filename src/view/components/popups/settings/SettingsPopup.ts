@@ -33,7 +33,6 @@ export default class SettingsPopup extends BasePopup {
 //
 import { CENTER } from '../../../../constants/Constants';
 import { PlayerType } from '../../../../constants/Enums';
-import Register from '../../../../register/Register';
 import { playerProxy } from '../../../../vo/PlayerProxy';
 import BasePopup from '../BasePopup';
 import { settingsPopup } from '../PopupConfigs';
@@ -52,17 +51,17 @@ class PlayerOption extends BaseOption {
     //
     super.destroy(options);
   }
-  protected next(): PIXI.Text {
-    const next: PIXI.Text = super.next();
-    next && Register.emit(SETTINGS_POPUP_PLAYER_OPTION, next.text);
-    return next;
-  }
+  // protected next(): PIXI.Text {
+  //   const next: PIXI.Text = super.next();
+  //   next && Register.emit(SETTINGS_POPUP_PLAYER_OPTION, next.text);
+  //   return next;
+  // }
 
-  protected previous(): PIXI.Text {
-    const previous: PIXI.Text = super.previous();
-    previous && Register.emit(SETTINGS_POPUP_PLAYER_OPTION, previous.text);
-    return previous;
-  }
+  // protected previous(): PIXI.Text {
+  // const previous: PIXI.Text = super.previous();
+  // previous && Register.emit(SETTINGS_POPUP_PLAYER_OPTION, previous.text);
+  // return previous;
+  // }
 
   private updateView(key: string, value: any): void {
     // organize settings popup update based on playerProxy, not based on self logic

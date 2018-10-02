@@ -31,6 +31,7 @@ export class PreloadScene extends BaseScene {
     loader.add(Images.TransparentPixel.Name, Images.TransparentPixel.FileURL);
     loader.add(Images.SettingsIcon.Name, Images.SettingsIcon.FileURL);
     loader.add(Images.FameIcon.Name, Images.FameIcon.FileURL);
+    loader.add(Images.ProfileIcon.Name, Images.ProfileIcon.FileURL);
     loader.add(
       Audios.Sounds.WelcomeSound.Name,
       Audios.Sounds.WelcomeSound.Mp3URL,

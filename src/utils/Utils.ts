@@ -21,4 +21,12 @@ function generateProxy(object: any): any {
   });
 }
 
-export { generateProxy };
+function getEnumKeys(e: any): any[] {
+  return Object.keys(e).filter((k: any) => typeof e[k as any] === 'number');
+}
+
+function getEnumValues(e: any): any[] {
+  return getEnumKeys(e).map((k: any) => e[k as any]);
+}
+
+export { generateProxy, getEnumValues, getEnumKeys };

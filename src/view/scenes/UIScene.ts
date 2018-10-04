@@ -15,6 +15,9 @@ export class UIScene extends BaseScene {
     this.createUI();
     //
     super.create();
+    setTimeout(() => {
+      Register.emit(UI_SCENE_SETTING_CLICK);
+    }, 200);
   }
 
   public async sleep(): Promise<void> {

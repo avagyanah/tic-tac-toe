@@ -16,10 +16,10 @@ export default class Square extends PIXI.Sprite {
     this.clear();
     this._type = value;
     switch (value) {
-      case 1:
+      case PlayerType.X:
         this.drawX();
         break;
-      case 2:
+      case PlayerType.O:
         this.draw0();
         break;
       default:
@@ -50,3 +50,4 @@ export default class Square extends PIXI.Sprite {
 //
 import { DisplayObject } from 'pixi.js';
 import { Images } from '../../assets';
+import { PlayerType } from '../../constants/Enums';

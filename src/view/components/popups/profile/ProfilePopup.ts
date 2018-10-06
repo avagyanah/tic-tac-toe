@@ -42,13 +42,13 @@ class SkillField extends BaseField {
 
 class GamesPlayedField extends BaseField {
   constructor() {
-    super('games', playerProxy.gamesPlayed);
+    super('games', playerProxy.gamesPlayed.toString());
   }
 }
 
 class RagingField extends BaseField {
   constructor() {
-    super('rating', playerProxy.rating);
+    super('rating', playerProxy.rating.toString());
   }
 }
 //

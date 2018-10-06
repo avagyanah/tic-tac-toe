@@ -2,7 +2,7 @@ export class BaseField extends PIXI.Container {
   protected titleLabel: PIXI.Text;
   protected valueLabel: PIXI.Text;
 
-  constructor(title: string, value: any) {
+  constructor(title: string, value: string) {
     super();
     this.createTitle(title);
     this.createValue(value);
@@ -18,7 +18,7 @@ export class BaseField extends PIXI.Container {
     this.addChild(this.titleLabel);
   }
 
-  private createValue(value: any): void {
+  private createValue(value: string): void {
     this.valueLabel = new PIXI.Text(`${value}`, {
       fontFamily: 'Octavio',
       fontSize: 60,

@@ -66,7 +66,7 @@ export namespace Images {
     public static Name: string = 'profile-icon';
     public static FileURL: string = 'assets/images/profile-icon.png';
     public static Extension: string = '.png';
-    public static Size: string = '5947';
+    public static Size: string = '12427';
   }
   export class SettingsIcon {
     public static Name: string = 'settings-icon';

@@ -59,14 +59,26 @@ export default class Register {
       SETTINGS_POPUP_PLAYER_OPTION,
       DefaultPlayerChangeCommand,
     );
-    // Register.eventsMap.set(SETTINGS_POPUP_SIZE_OPTION, GameSizeChangeCommand);
-    // Register.eventsMap.set(SETTINGS_POPUP_SOUND_OPTION, SoundChangeCommand);
-    // Register.eventsMap.set(SETTINGS_POPUP_MUSIC_OPTION, MusicChangeCommand);
+    Register.eventsMap.set(
+      SETTINGS_POPUP_SOUND_OPTION,
+      SoundStateChangeCommand,
+    );
+    Register.eventsMap.set(
+      SETTINGS_POPUP_MUSIC_OPTION,
+      MusicStateChangeCommand,
+    );
+    Register.eventsMap.set(
+      SETTINGS_POPUP_SIZE_OPTION,
+      DefaultGameSizeChangeCommand,
+    );
   }
 }
 //
 import { PlayerMoveCommand } from '../command/game/PlayerMoveCommand';
+import { DefaultGameSizeChangeCommand } from '../command/player/DefaultGameSizeChangeCommand';
 import { DefaultPlayerChangeCommand } from '../command/player/DefaultPlayerChangeCommand';
+import { MusicStateChangeCommand } from '../command/player/MusicStateChangeCommand';
+import { SoundStateChangeCommand } from '../command/player/SoundStateChangeCommand';
 import { BackgroundSceneStartCommand } from '../command/scenes/background/BackgroundSceneStartCommand';
 import { GameSceneStartCommand } from '../command/scenes/game/GameSceneStartCommand';
 import { LobbyPlayButtonClickCommand } from '../command/scenes/lobby/LobbyPlayButtonClickCommand';
@@ -79,7 +91,12 @@ import { PreloadSceneLoadProgressCommand } from '../command/scenes/prelaod/Prelo
 import { UIFameButtonClickCommand } from '../command/scenes/ui/UIFameButtonClickCommand';
 import { UIProfileButtonClickCommand } from '../command/scenes/ui/UIProfileButtonClickCommand';
 import { UISettingsButtonClickCommand } from '../command/scenes/ui/UISettingsButtonClickCommand';
-import { SETTINGS_POPUP_PLAYER_OPTION } from '../view/components/popups/settings/SettingsPopup';
+import {
+  SETTINGS_POPUP_MUSIC_OPTION,
+  SETTINGS_POPUP_PLAYER_OPTION,
+  SETTINGS_POPUP_SIZE_OPTION,
+  SETTINGS_POPUP_SOUND_OPTION,
+} from '../view/components/popups/settings/SettingsPopup';
 import { SQUARE_CLICK } from '../view/components/Square';
 import { BACKGROUND_SCENE_START } from '../view/scenes/BackgroundScene';
 import { GAME_SCENE_START } from '../view/scenes/GameScene';

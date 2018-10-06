@@ -1,13 +1,13 @@
-export function DefaultPlayerChangeCommand(increment: number): void {
+export function SoundStateChangeCommand(increment: number): void {
   PlayerOptionChangeCommand(
-    getEnumValues(PlayerType),
+    getEnumValues(SwitcherState),
     playerProxy,
-    'player',
+    'soundState',
     increment,
   );
 }
 //
-import { PlayerType } from '../../constants/Collections';
+import { SwitcherState } from '../../constants/Collections';
 import { getEnumValues } from '../../utils/Utils';
 import { playerProxy } from '../../vo/PlayerProxy';
 import { PlayerOptionChangeCommand } from './PlayerOptionChangeCommand';

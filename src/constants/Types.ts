@@ -1,4 +1,4 @@
-import { PlayerType } from './Enums';
+import { PlayerType } from './Collections';
 declare global {
   // tslint:disable-next-line
   interface Window {
@@ -53,8 +53,8 @@ interface IPopupProxy extends IVO {
 interface IPlayerProxy extends IVO {
   player: PlayerType;
   gameSize: number;
-  soundState: string;
-  musicState: string;
+  soundState: number;
+  musicState: number;
   getSavableData: () => IStoredPlayerData;
   sync: (data: IStoredPlayerData) => void;
 }

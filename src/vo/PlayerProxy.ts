@@ -1,8 +1,8 @@
 const vo: any = {
-  player: 1,
+  player: PlayerType.X,
   gameSize: 3,
-  soundState: 'on',
-  musicState: 'on',
+  soundState: SwitcherState.ON,
+  musicState: SwitcherState.OFF,
   getSavableData: () => {
     return {
       player: vo.player,
@@ -22,5 +22,6 @@ const playerProxy: IPlayerProxy = generateProxy(vo);
 
 export { playerProxy, IPlayerProxy };
 //
+import { PlayerType, SwitcherState } from '../constants/Collections';
 import { IPlayerProxy, IStoredPlayerData } from '../constants/Types';
 import { generateProxy } from '../utils/Utils';

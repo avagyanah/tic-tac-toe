@@ -29,4 +29,34 @@ function getEnumValues(e: any): any[] {
   return getEnumKeys(e).map((k: any) => e[k as any]);
 }
 
-export { generateProxy, getEnumValues, getEnumKeys };
+function getEnumKey(e: any, key: any): string {
+  return getEnumKeys(e).find((k: any) => e[k as any] === key);
+}
+
+function getEnumValue(e: any, value: any): any {
+  return getEnumValues(e).find((v: any) => e[v as any] === value);
+}
+
+function arrayToLowercase(arr: any[]): any[] {
+  for (let i: number = 0; i < arr.length; i++) {
+    arr[i] = arr[i].toLowerCase();
+  }
+  return arr;
+}
+
+function arrayToUppercase(arr: any[]): any[] {
+  for (let i: number = 0; i < arr.length; i++) {
+    arr[i] = arr[i].toUpperCase();
+  }
+  return arr;
+}
+
+export {
+  generateProxy,
+  getEnumValues,
+  getEnumKeys,
+  getEnumKey,
+  getEnumValue,
+  arrayToLowercase,
+  arrayToUppercase,
+};

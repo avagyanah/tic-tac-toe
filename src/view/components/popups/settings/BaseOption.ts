@@ -2,10 +2,14 @@ export class BaseOption extends PIXI.Container {
   protected nextBtn: Button;
   protected previousBtn: Button;
   private options: PIXI.Text[] = [];
-  private activeIndex: number = 0;
   private titleLabel: PIXI.Text;
 
-  constructor(title: string, options: any[], active: any) {
+  constructor(
+    title: string,
+    options: any[],
+    active: any,
+    private action: string,
+  ) {
     super();
     //
     this.createTitle(title);
@@ -15,18 +19,26 @@ export class BaseOption extends PIXI.Container {
     this.setActiveValue(active, false);
   }
 
+  public setActiveValue(value: string, tween: boolean = true): void {
+    const activeObj: PIXI.Text = this.options.find(
+      (opt: PIXI.Text) => opt.text === value.toString(),
+    );
+    if (!activeObj) {
+      return;
+    }
+    const diff: number =
+      (this.previousBtn.x + this.nextBtn.x) / 2 - activeObj.x;
+    this.startOptionsTween(diff, tween);
+  }
+
   protected next(): void {
+    Register.emit(this.action, 1);
     this.startButtonTween(this.nextBtn);
-    //   const next: PIXI.Text = this.options[this.activeIndex + 1];
-    //   next && this.setActiveValue(next.text);
-    //   return next;
   }
 
   protected previous(): void {
+    Register.emit(this.action, -1);
     this.startButtonTween(this.previousBtn);
-    //   const previous: PIXI.Text = this.options[this.activeIndex - 1];
-    //   previous && this.setActiveValue(previous.text);
-    //   return previous;
   }
 
   private createTitle(title: string): void {
@@ -87,33 +99,18 @@ export class BaseOption extends PIXI.Container {
     });
   }
 
-  private setActiveValue(value: string, tween: boolean = true): void {
-    const index: number = this.options.indexOf(
-      this.options.find((opt: PIXI.Text) => opt.text === value),
-    );
-
-    const diff: number = Math.abs(index - this.activeIndex);
-    if (index > this.activeIndex) {
-      this.startOptionsTween(diff * -60, tween);
-    } else if (index < this.activeIndex) {
-      this.startOptionsTween(diff * 60, tween);
-    }
-    this.activeIndex = index;
-  }
-
   private startOptionsTween(value: number, tween: boolean): void {
-    // if (!tween) {
-    //   this.options.forEach((opt: PIXI.Text) => {
-    //     opt.x += value;
-    //   });
-    // } else {
-    //   this.options.forEach((opt: PIXI.Text) => {
-    //     TweenLite.to(opt, 0.2, {
-    //       x: opt.x + value,
-    //       ease: Back.easeIn,
-    //     });
-    //   });
-    // }
+    this.options.forEach((opt: PIXI.Text) => {
+      const toX: number = opt.x + value;
+      if (!tween) {
+        opt.x = toX;
+      } else {
+        TweenLite.to(opt, 0.2, {
+          x: toX,
+          ease: Back.easeIn,
+        });
+      }
+    });
   }
 
   private startButtonTween(button: Button): void {
@@ -131,6 +128,7 @@ export class BaseOption extends PIXI.Container {
   }
 }
 //
-import { TweenMax } from 'gsap';
+import { Back, TweenLite, TweenMax } from 'gsap';
+import Register from '../../../../register/Register';
 import { Button } from '../../../../utils/Button';
 import { settingsPreviousBtn } from '../../buttons/ButtonConfigs';

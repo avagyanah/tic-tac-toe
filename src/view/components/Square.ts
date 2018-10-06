@@ -50,4 +50,4 @@ export default class Square extends PIXI.Sprite {
 //
 import { DisplayObject } from 'pixi.js';
 import { Images } from '../../assets';
-import { PlayerType } from '../../constants/Enums';
+import { PlayerType } from '../../constants/Collections';

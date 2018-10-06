@@ -1,4 +1,4 @@
-import { PlayerType } from '../constants/Enums';
+import { PlayerType } from '../constants/Collections';
 
 /*0 0 1*/
 /*1 0 2*/

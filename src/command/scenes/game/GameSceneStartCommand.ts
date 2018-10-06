@@ -1,5 +1,5 @@
 export function GameSceneStartCommand(): void {
-  PIXI.sound.play(Audios.Sounds.WelcomeSound.Name, {
+  PlaySound(Audios.Sounds.WelcomeSound.Name, {
     volume: 1,
   });
   //
@@ -11,6 +11,7 @@ export function GameSceneStartCommand(): void {
 }
 //
 import { Audios } from '../../../assets';
+import { PlaySound } from '../../../utils/Utils';
 import { gameProxy } from '../../../vo/GameProxy';
 import LB from '../../../vo/LB';
 import { playerProxy } from '../../../vo/PlayerProxy';

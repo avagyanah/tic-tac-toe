@@ -1,5 +1,5 @@
 export function PlayerMoveCommand(i: number): void {
-  PIXI.sound.play(Audios.Sounds.ClickSound.Name, {
+  PlaySound(Audios.Sounds.ClickSound.Name, {
     volume: 1,
   });
   //
@@ -10,6 +10,7 @@ export function PlayerMoveCommand(i: number): void {
 }
 //
 import { Audios } from '../../assets';
+import { PlaySound } from '../../utils/Utils';
 import { gameProxy } from '../../vo/GameProxy';
 import LB, { IState } from '../../vo/LB';
 import { playerProxy } from '../../vo/PlayerProxy';

@@ -30,6 +30,8 @@ export class LobbyScene extends BaseScene {
     this.playBtn = new Button(playBtn);
     this.playBtn.position.set(GAME_WIDTH, GAME_HEIGHT * 0.737);
     this.playBtn.on('pointerup', this.onPlayBtnClick, this);
+    this.playBtn.hitArea = new PIXI.Rectangle(-150, -100, 300, 200);
+
     //
     this.addChild(this.playBtn);
     this.interactiveChildren = false;

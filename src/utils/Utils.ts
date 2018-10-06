@@ -1,4 +1,26 @@
+import { CompleteCallback, PlayOptions } from 'pixi-sound';
+import store from 'store';
+import { SwitcherState } from '../constants/Collections';
 import { VO } from '../vo/VO';
+
+function PlaySound(
+  alias: string,
+  options?: string | PlayOptions | CompleteCallback,
+): void {
+  if (store.get('tic_tac_toe_playerData').soundState === SwitcherState.OFF) {
+    return;
+  }
+  PIXI.sound.play(alias, options);
+}
+function PlayMusic(
+  alias: string,
+  options?: string | PlayOptions | CompleteCallback,
+): void {
+  if (store.get('tic_tac_toe_playerData').musicState === SwitcherState.OFF) {
+    return;
+  }
+  PIXI.sound.play(alias, options);
+}
 
 function generateProxy(object: any): any {
   Object.assign(object, VO);
@@ -52,6 +74,8 @@ function arrayToUppercase(arr: any[]): any[] {
 }
 
 export {
+  PlaySound,
+  PlayMusic,
   generateProxy,
   getEnumValues,
   getEnumKeys,

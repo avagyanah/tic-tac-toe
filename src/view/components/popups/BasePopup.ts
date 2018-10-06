@@ -22,7 +22,7 @@ export default class BasePopup extends PIXI.Container {
           ease: Linear.easeIn,
           onStart: () => {
             this.parent.addChildAt(this.blocker, 0);
-            PIXI.sound.play(Audios.Sounds.WelcomeSound.Name, {
+            PlaySound(Audios.Sounds.WelcomeSound.Name, {
               volume: 1,
             });
           },
@@ -59,7 +59,7 @@ export default class BasePopup extends PIXI.Container {
         alpha: 0,
         ease: Linear.easeIn,
         onStart: () => {
-          PIXI.sound.play(Audios.Sounds.WelcomeSound.Name, {
+          PlaySound(Audios.Sounds.WelcomeSound.Name, {
             volume: 1,
           });
         },
@@ -144,4 +144,5 @@ export default class BasePopup extends PIXI.Container {
 import { Back, Linear, TweenLite } from 'gsap';
 import { Audios } from '../../../assets';
 import { CENTER, GAME_HEIGHT, GAME_WIDTH } from '../../../constants/Constants';
+import { PlaySound } from '../../../utils/Utils';
 import { IPopupConfig } from './PopupConfigs';

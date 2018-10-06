@@ -4,7 +4,7 @@ export function BackgroundSceneStartCommand(): void {
   window.TTT.sceneManager.start(UI_SCENE);
   window.TTT.sceneManager.wake(LOBBY_SCENE);
   //
-  PIXI.sound.play(Audios.Sounds.WelcomeSound.Name, {
+  PlaySound(Audios.Sounds.WelcomeSound.Name, {
     volume: 1,
   });
 }
@@ -15,3 +15,4 @@ import {
   PRELOAD_SCENE,
   UI_SCENE,
 } from '../../../constants/Constants';
+import { PlaySound } from '../../../utils/Utils';

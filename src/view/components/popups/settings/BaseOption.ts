@@ -28,7 +28,15 @@ export class BaseOption extends PIXI.Container {
     }
     const diff: number =
       (this.previousBtn.x + this.nextBtn.x) / 2 - activeObj.x;
+    //
+    this.switchControl(this.nextBtn, true);
+    this.switchControl(this.previousBtn, true);
     this.startOptionsTween(diff, tween);
+    if (this.options.indexOf(activeObj) === this.options.length - 1) {
+      this.switchControl(this.nextBtn, false);
+    } else if (this.options.indexOf(activeObj) === 0) {
+      this.switchControl(this.previousBtn, false);
+    }
   }
 
   protected next(): void {
@@ -118,13 +126,12 @@ export class BaseOption extends PIXI.Container {
       x: button.x + button.scale.x * 10,
       repeat: 1,
       yoyo: true,
-      onStart: () => {
-        button.interactive = false;
-      },
-      onComplete: () => {
-        button.interactive = true;
-      },
     });
+  }
+
+  private switchControl(button: Button, enable: boolean): void {
+    button.interactive = enable;
+    button.alpha = enable ? 0.6 : 0.3;
   }
 }
 //

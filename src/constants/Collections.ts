@@ -3,6 +3,13 @@ enum PlayerType {
   O = -1,
 }
 //
+enum SkillType {
+  Beginner = 1,
+  Intermediate,
+  Expert,
+  Master,
+}
+//
 enum SwitcherState {
   ON = 1,
   OFF = -1,
@@ -10,4 +17,4 @@ enum SwitcherState {
 //
 const GAME_SIZES: number[] = [3, 4];
 
-export { PlayerType, SwitcherState, GAME_SIZES };
+export { PlayerType, SwitcherState, GAME_SIZES, SkillType };

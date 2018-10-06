@@ -48,20 +48,35 @@ export default class SettingsPopup extends BasePopup {
   }
 
   private createOptions(): void {
-    const deviance: number = 45;
+    const deviance: { x: number; y: number } = {
+      x: 30,
+      y: 45,
+    };
     const centerY: number = this.bg.y + this.title.height / 2;
 
     this.playerOption = new PlayerOption();
-    this.playerOption.position.set(CENTER.x - 30, centerY - 3 * deviance);
+    this.playerOption.position.set(
+      CENTER.x - deviance.x,
+      centerY - 3 * deviance.y,
+    );
     //
     this.sizeOption = new SizeOption();
-    this.sizeOption.position.set(CENTER.x - 30, centerY - 1 * deviance);
+    this.sizeOption.position.set(
+      CENTER.x - deviance.x,
+      centerY - 1 * deviance.y,
+    );
     //
     this.soundOption = new SoundOption();
-    this.soundOption.position.set(CENTER.x - 30, centerY + 1 * deviance);
+    this.soundOption.position.set(
+      CENTER.x - deviance.x,
+      centerY + 1 * deviance.y,
+    );
     //
     this.musicOption = new MusicOption();
-    this.musicOption.position.set(CENTER.x - 30, centerY + 3 * deviance);
+    this.musicOption.position.set(
+      CENTER.x - deviance.x,
+      centerY + 3 * deviance.y,
+    );
     //
     this.addChild(
       this.playerOption,

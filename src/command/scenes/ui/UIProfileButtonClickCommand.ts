@@ -4,5 +4,5 @@ export function UIProfileButtonClickCommand(): void {
 }
 //
 import { UI_SCENE } from '../../../constants/Constants';
-import ProfilePopup from '../../../view/components/popups/ProfilePopup';
+import ProfilePopup from '../../../view/components/popups/profile/ProfilePopup';
 import { PopupShowCommand } from '../popup/PopupShowCommand';

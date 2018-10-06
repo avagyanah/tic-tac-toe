@@ -1,4 +1,4 @@
-import { PlayerType } from './Collections';
+import { PlayerType, SkillType } from './Collections';
 declare global {
   // tslint:disable-next-line
   interface Window {
@@ -51,6 +51,10 @@ interface IPopupProxy extends IVO {
 }
 //
 interface IPlayerProxy extends IVO {
+  name: string;
+  skill: SkillType;
+  gamesPlayed: number;
+  rating: number;
   player: PlayerType;
   gameSize: number;
   soundState: number;
@@ -60,6 +64,10 @@ interface IPlayerProxy extends IVO {
 }
 //
 interface IStoredPlayerData {
+  name: string;
+  skill: SkillType;
+  gamesPlayed: number;
+  rating: number;
   player: PlayerType;
   gameSize: number;
   soundState: string;

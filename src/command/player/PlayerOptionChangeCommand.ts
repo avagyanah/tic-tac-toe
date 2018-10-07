@@ -1,16 +1,16 @@
 export function PlayerOptionChangeCommand(
   collection: any[],
-  proxy: any,
   property: string,
   increment: number,
 ): void {
   const values: number[] = collection;
-  const currentIndex: number = values.indexOf(proxy[property]);
+  const currentIndex: number = values.indexOf((playerProxy as any)[property]);
   const index: number = currentIndex + increment;
   if (values[index]) {
-    proxy[property] = values[index];
+    (playerProxy as any)[property] = values[index];
     PlayerSaveCommand();
   }
 }
 //
+import { playerProxy } from '../../vo/PlayerProxy';
 import { PlayerSaveCommand } from './PlayerSaveCommand';

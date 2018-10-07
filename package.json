@@ -32,6 +32,7 @@
     "webpack-merge": "^4.1.4"
   },
   "dependencies": {
+    "firebase": "^5.5.3",
     "gsap": "^2.0.2",
     "lodash.sample": "^4.2.1",
     "pixi-sound": "^2.0.3",

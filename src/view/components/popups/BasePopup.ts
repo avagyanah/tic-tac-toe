@@ -128,6 +128,7 @@ export default class BasePopup extends PIXI.Container {
     btn.tint = 0x626262;
     btn.interactive = true;
     btn.buttonMode = true;
+    btn.hitArea = new PIXI.Rectangle(-50, -50, 100, 100);
     btn.once('pointerdown', this.hide, this);
     return btn;
   }

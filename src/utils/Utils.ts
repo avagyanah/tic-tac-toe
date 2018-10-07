@@ -1,13 +1,16 @@
+import firebase from 'firebase/app';
+import 'firebase/firestore';
 import { CompleteCallback, PlayOptions } from 'pixi-sound';
 import store from 'store';
 import { SwitcherState } from '../constants/Collections';
+import { STORAGE_PLAYER_NAME } from '../constants/Constants';
 import { VO } from '../vo/VO';
 
 function PlaySound(
   alias: string,
   options?: string | PlayOptions | CompleteCallback,
 ): void {
-  if (store.get('tic_tac_toe_playerData').soundState === SwitcherState.OFF) {
+  if (store.get(`${STORAGE_PLAYER_NAME}`).soundState === SwitcherState.OFF) {
     return;
   }
   PIXI.sound.play(alias, options);
@@ -16,7 +19,7 @@ function PlayMusic(
   alias: string,
   options?: string | PlayOptions | CompleteCallback,
 ): void {
-  if (store.get('tic_tac_toe_playerData').musicState === SwitcherState.OFF) {
+  if (store.get(`${STORAGE_PLAYER_NAME}`).musicState === SwitcherState.OFF) {
     return;
   }
   PIXI.sound.play(alias, options);
@@ -73,6 +76,48 @@ function arrayToUppercase(arr: any[]): any[] {
   return arr;
 }
 
+async function getFirebaseDataAsync(docId: string): Promise<void> {
+  const dataObj: any = firebase
+    .firestore()
+    .doc(docId)
+    .get()
+    .then((doc: any) => {
+      return dataObj;
+    })
+    .catch((err: any) => {
+      console.warn(err);
+    });
+}
+
+async function setFirebaseDataAsync(docId: string, data: any): Promise<void> {
+  firebase
+    .firestore()
+    .doc(docId)
+    .set(data)
+    .then((doc: any) => {
+      // ...
+    })
+    .catch((err: any) => {
+      console.warn(err);
+    });
+}
+async function deleteFirebaseDataAsync(docId: string): Promise<void> {
+  firebase
+    .firestore()
+    .doc(docId)
+    .delete()
+    .then((doc: any) => {
+      // ...
+    })
+    .catch((err: any) => {
+      console.warn(err);
+    });
+}
+
+// export const serialise = object => {
+//   return JSON.parse(JSON.stringify(object));
+// };
+
 export {
   PlaySound,
   PlayMusic,
@@ -83,4 +128,7 @@ export {
   getEnumValue,
   arrayToLowercase,
   arrayToUppercase,
+  setFirebaseDataAsync,
+  deleteFirebaseDataAsync,
+  getFirebaseDataAsync,
 };

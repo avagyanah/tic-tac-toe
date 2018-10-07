@@ -11,4 +11,6 @@ export const CENTER: PIXI.Point = new PIXI.Point(
   GAME_HEIGHT * 0.5,
 );
 //
+export const FIRESTORE_PLAYERS_COLLECTION_NAME: string = 'players';
+export const STORAGE_PLAYER_NAME: string = 'tic_tac_toe_playerData';
 import { gameConfig } from './GameConfig';

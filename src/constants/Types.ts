@@ -51,11 +51,12 @@ interface IPopupProxy extends IVO {
 }
 //
 interface IPlayerProxy extends IVO {
-  name: string;
   id: string;
-  skill: SkillType;
-  gamesPlayed: number;
+  name: string;
   rating: number;
+  skill: SkillType;
+  timescale: number;
+  gamesPlayed: number;
   player: PlayerType;
   gameSize: number;
   soundState: number;
@@ -65,11 +66,12 @@ interface IPlayerProxy extends IVO {
 }
 //
 interface IStoredPlayerData {
-  name: string;
   id: string;
-  skill: SkillType;
-  gamesPlayed: number;
+  name: string;
   rating: number;
+  skill: SkillType;
+  timescale: number;
+  gamesPlayed: number;
   player: PlayerType;
   gameSize: number;
   soundState: string;

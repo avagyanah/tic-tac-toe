@@ -37,26 +37,13 @@ export class TTTGame extends PIXI.Application implements IGame {
 document.onreadystatechange = () => {
   if (document.readyState === 'complete') {
     window.TTT = new TTTGame(gameConfig);
-    initializeFirestore();
   }
 };
-
-function initializeFirestore(): void {
-  firebase.initializeApp({
-    apiKey: 'AIzaSyAKi-NpAFs_nQtBGO8fRtzr8BK7VsegAHQ',
-    authDomain: 'tic-tac-toe-f54f7.firebaseapp.com',
-    projectId: 'tic-tac-toe-f54f7',
-  });
-  firebase.firestore().settings({
-    timestampsInSnapshots: true,
-  });
-}
 
 //
 // tslint:disable-next-line
 /// <reference path="../typings/pixi.js.d.ts" />
 // tslint:disable-next-line
-import firebase from 'firebase/app';
 import * as PIXI from 'pixi.js';
 import {
   BACKGROUND_SCENE,

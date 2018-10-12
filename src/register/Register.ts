@@ -1,3 +1,5 @@
+const STARTUP: string = 'Startup';
+
 export default class Register {
   public static emit(_name: string, ..._args: any[]): void {
     const command: any = Register.eventsMap.get(_name);
@@ -30,9 +32,11 @@ export default class Register {
 
   public init(): void {
     this.registerCommands();
+    Register.emit(STARTUP);
   }
 
   private registerCommands(): void {
+    Register.eventsMap.set(STARTUP, StartupCommand);
     Register.eventsMap.set(
       PRELOAD_SCENE_LOAD_PROGRESS,
       PreloadSceneLoadProgressCommand,
@@ -91,6 +95,7 @@ import { PreloadSceneLoadProgressCommand } from '../command/scenes/prelaod/Prelo
 import { UIFameButtonClickCommand } from '../command/scenes/ui/UIFameButtonClickCommand';
 import { UIProfileButtonClickCommand } from '../command/scenes/ui/UIProfileButtonClickCommand';
 import { UISettingsButtonClickCommand } from '../command/scenes/ui/UISettingsButtonClickCommand';
+import { StartupCommand } from '../command/StartupCommand';
 import {
   SETTINGS_POPUP_MUSIC_OPTION,
   SETTINGS_POPUP_PLAYER_OPTION,

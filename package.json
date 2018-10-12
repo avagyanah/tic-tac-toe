@@ -11,6 +11,7 @@
     "@types/gsap": "^1.19.2",
     "@types/lodash.sample": "^4.2.4",
     "@types/storejs": "^2.0.3",
+    "@types/uuid": "^3.4.4",
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^4.5.2",
     "directory-tree": "^2.1.0",
@@ -35,8 +36,10 @@
     "firebase": "^5.5.3",
     "gsap": "^2.0.2",
     "lodash.sample": "^4.2.1",
+    "moment": "^2.22.2",
     "pixi-sound": "^2.0.3",
     "pixi.js": "^4.8.1",
-    "store": "^2.0.12"
+    "store": "^2.0.12",
+    "uuid": "^3.3.2"
   }
 }

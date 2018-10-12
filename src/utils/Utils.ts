@@ -114,9 +114,9 @@ async function deleteFirebaseDataAsync(docId: string): Promise<void> {
     });
 }
 
-// export const serialise = object => {
-//   return JSON.parse(JSON.stringify(object));
-// };
+function serialize(obj: any): any {
+  return JSON.parse(JSON.stringify(obj));
+}
 
 export {
   PlaySound,
@@ -131,4 +131,5 @@ export {
   setFirebaseDataAsync,
   deleteFirebaseDataAsync,
   getFirebaseDataAsync,
+  serialize,
 };

@@ -7,11 +7,12 @@ const vo: any = {
   musicState: SwitcherState.OFF,
   getSavableData: () => {
     return {
-      name: vo.name,
       id: vo.id,
-      skill: vo.skill,
-      gamesPlayed: vo.gamesPlayed,
+      name: vo.name,
       rating: vo.rating,
+      skill: vo.skill,
+      timescale: vo.timescale,
+      gamesPlayed: vo.gamesPlayed,
       player: vo.player,
       gameSize: vo.gameSize,
       soundState: vo.soundState,
@@ -19,11 +20,12 @@ const vo: any = {
     };
   },
   sync: (data: IStoredPlayerData) => {
-    vo.name = data.name || vo.id;
     vo.id = data.id || vo.id;
-    vo.skill = data.skill || vo.skill;
-    vo.gamesPlayed = data.gamesPlayed || vo.gamesPlayed;
+    vo.name = data.name || vo.id;
     vo.rating = data.rating || vo.rating;
+    vo.skill = data.skill || vo.skill;
+    vo.timescale = data.timescale || vo.timescale;
+    vo.gamesPlayed = data.gamesPlayed || vo.gamesPlayed;
     vo.player = data.player || vo.player;
     vo.gameSize = data.gameSize || vo.gameSize;
     vo.soundState = data.soundState || vo.soundState;

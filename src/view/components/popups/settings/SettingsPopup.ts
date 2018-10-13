@@ -11,13 +11,13 @@ export default class SettingsPopup extends BasePopup {
 
   constructor() {
     super(settingsPopup);
-    playerProxy.registerObserver(this);
+    settingsProxy.registerObserver(this);
     //
     this.createOptions();
   }
 
   public destroy(options?: boolean | PIXI.DestroyOptions): void {
-    playerProxy.removeObserver(this);
+    settingsProxy.removeObserver(this);
     //
     super.destroy(options);
   }
@@ -99,7 +99,7 @@ import {
   getEnumKey,
   getEnumKeys,
 } from '../../../../utils/Utils';
-import { playerProxy } from '../../../../vo/PlayerProxy';
+import { playerProxy, settingsProxy } from '../../../../vo/PlayerProxy';
 import BasePopup from '../BasePopup';
 import { settingsPopup } from '../PopupConfigs';
 import { BaseOption } from './BaseOption';
@@ -110,7 +110,7 @@ class PlayerOption extends BaseOption {
     super(
       'player',
       arrayToUppercase(getEnumKeys(PlayerType)),
-      getEnumKey(PlayerType, playerProxy.player),
+      getEnumKey(PlayerType, playerProxy.settings.player),
       SETTINGS_POPUP_PLAYER_OPTION,
     );
   }
@@ -119,7 +119,12 @@ class PlayerOption extends BaseOption {
 //
 class SizeOption extends BaseOption {
   constructor() {
-    super('size', GAME_SIZES, playerProxy.gameSize, SETTINGS_POPUP_SIZE_OPTION);
+    super(
+      'size',
+      GAME_SIZES,
+      playerProxy.settings.gameSize,
+      SETTINGS_POPUP_SIZE_OPTION,
+    );
   }
 }
 
@@ -129,7 +134,7 @@ class SoundOption extends BaseOption {
     super(
       'sound',
       arrayToLowercase(getEnumKeys(SwitcherState)),
-      getEnumKey(SwitcherState, playerProxy.soundState).toLowerCase(),
+      getEnumKey(SwitcherState, playerProxy.settings.soundState).toLowerCase(),
       SETTINGS_POPUP_SOUND_OPTION,
     );
   }
@@ -141,7 +146,7 @@ class MusicOption extends BaseOption {
     super(
       'music',
       arrayToLowercase(getEnumKeys(SwitcherState)),
-      getEnumKey(SwitcherState, playerProxy.musicState).toLowerCase(),
+      getEnumKey(SwitcherState, playerProxy.settings.musicState).toLowerCase(),
       SETTINGS_POPUP_MUSIC_OPTION,
     );
   }

@@ -6,25 +6,25 @@ declare global {
   }
 }
 //
-interface IGame extends PIXI.Application {
+export interface IGame extends PIXI.Application {
   config: IGameConfig;
   sceneManager: ISceneManager;
 }
 //
-interface IScene {
+export interface IScene {
   create: () => void;
   destroy: () => void;
   wake: () => void;
   sleep: () => void;
 }
 //
-interface IVO {
+export interface IVO {
   observers: any[];
   removeObserver: (observer: any) => void;
   registerObserver: (observer: any) => void;
 }
 //
-interface ISceneManager {
+export interface ISceneManager {
   add: (key: string, scene: any) => void;
   start: (key: string) => void;
   destroy: (key: string) => void;
@@ -32,7 +32,7 @@ interface ISceneManager {
   sleep: (key: string) => void;
 }
 //
-interface IGameConfig {
+export interface IGameConfig {
   width: number;
   height: number;
   backgroundColor?: number;
@@ -42,59 +42,44 @@ interface IGameConfig {
   transparent?: boolean;
 }
 //
-interface IViewProxy extends IVO {
+export interface IViewProxy extends IVO {
   popup: IPopupProxy;
 }
 
-interface IPopupProxy extends IVO {
+export interface IPopupProxy extends IVO {
   queue: any[];
 }
 //
-interface IPlayerProxy extends IVO {
-  id: string;
-  name: string;
-  rating: number;
-  skill: SkillType;
-  timescale: number;
+export interface IPlayerProxy extends IVO {
+  user: IUserVO;
+  settings: ISettingsVO;
   gamesPlayed: number;
-  player: PlayerType;
-  gameSize: number;
-  soundState: number;
-  musicState: number;
   getSavableData: () => IStoredPlayerData;
   sync: (data: IStoredPlayerData) => void;
 }
 //
-interface IStoredPlayerData {
+export interface IUserVO extends IVO {
   id: string;
   name: string;
   rating: number;
   skill: SkillType;
-  timescale: number;
-  gamesPlayed: number;
+}
+export interface ISettingsVO extends IVO {
   player: PlayerType;
   gameSize: number;
   soundState: string;
   musicState: string;
 }
+export interface IStoredPlayerData {
+  user: IUserVO;
+  settings: ISettingsVO;
+  gamesPlayed: number;
+}
 //
-interface IGameProxy extends IVO {
+export interface IGameProxy extends IVO {
   difficulty: number;
   board: number[];
   resolved: boolean;
   size: number;
 }
 //
-
-export {
-  IGame,
-  IScene,
-  IGameConfig,
-  ISceneManager,
-  IVO,
-  IViewProxy,
-  IPopupProxy,
-  IPlayerProxy,
-  IStoredPlayerData,
-  IGameProxy,
-};

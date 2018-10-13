@@ -3,7 +3,7 @@ export function PlayerMoveCommand(i: number): void {
     volume: 1,
   });
   //
-  gameProxy.board[i] = playerProxy.player;
+  gameProxy.board[i] = playerProxy.settings.player;
   const state: IState = LB.move(gameProxy.board);
   gameProxy.board = state.board;
   gameProxy.resolved = state.resolved;

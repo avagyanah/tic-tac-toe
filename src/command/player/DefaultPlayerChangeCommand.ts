@@ -1,7 +1,7 @@
 export function DefaultPlayerChangeCommand(increment: number): void {
-  PlayerOptionChangeCommand(getEnumValues(PlayerType), 'player', increment);
+  PlayerSettingChangeCommand(getEnumValues(PlayerType), 'player', increment);
 }
 //
 import { PlayerType } from '../../constants/Collections';
 import { getEnumValues } from '../../utils/Utils';
-import { PlayerOptionChangeCommand } from './PlayerOptionChangeCommand';
+import { PlayerSettingChangeCommand } from './PlayerSettingChangeCommand';

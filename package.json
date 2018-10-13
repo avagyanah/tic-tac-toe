@@ -9,6 +9,7 @@
   },
   "devDependencies": {
     "@types/gsap": "^1.19.2",
+    "@types/lodash.get": "^4.4.4",
     "@types/lodash.sample": "^4.2.4",
     "@types/storejs": "^2.0.3",
     "@types/uuid": "^3.4.4",
@@ -35,6 +36,7 @@
   "dependencies": {
     "firebase": "^5.5.3",
     "gsap": "^2.0.2",
+    "lodash.get": "^4.4.2",
     "lodash.sample": "^4.2.1",
     "moment": "^2.22.2",
     "pixi-sound": "^2.0.3",

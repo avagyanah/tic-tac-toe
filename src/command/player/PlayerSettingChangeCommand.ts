@@ -1,13 +1,15 @@
-export function PlayerOptionChangeCommand(
+export function PlayerSettingChangeCommand(
   collection: any[],
   property: string,
   increment: number,
 ): void {
   const values: number[] = collection;
-  const currentIndex: number = values.indexOf((playerProxy as any)[property]);
+  const currentIndex: number = values.indexOf(
+    (playerProxy.settings as any)[property],
+  );
   const index: number = currentIndex + increment;
   if (values[index]) {
-    (playerProxy as any)[property] = values[index];
+    (playerProxy.settings as any)[property] = values[index];
     PlayerSaveCommand();
   }
 }

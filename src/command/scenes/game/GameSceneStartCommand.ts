@@ -3,8 +3,10 @@ export function GameSceneStartCommand(): void {
     volume: 1,
   });
   //
-  gameProxy.size = playerProxy.gameSize;
-  gameProxy.board = new Array(Math.pow(playerProxy.gameSize, 2)).fill(0);
+  gameProxy.size = playerProxy.settings.gameSize;
+  gameProxy.board = new Array(Math.pow(playerProxy.settings.gameSize, 2)).fill(
+    0,
+  );
   gameProxy.difficulty = 1;
   //
   LB.initialize(gameProxy.size);

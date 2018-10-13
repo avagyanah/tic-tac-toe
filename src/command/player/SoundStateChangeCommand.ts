@@ -1,5 +1,5 @@
 export function SoundStateChangeCommand(increment: number): void {
-  PlayerOptionChangeCommand(
+  PlayerSettingChangeCommand(
     getEnumValues(SwitcherState),
     'soundState',
     increment,
@@ -8,4 +8,4 @@ export function SoundStateChangeCommand(increment: number): void {
 //
 import { SwitcherState } from '../../constants/Collections';
 import { getEnumValues } from '../../utils/Utils';
-import { PlayerOptionChangeCommand } from './PlayerOptionChangeCommand';
+import { PlayerSettingChangeCommand } from './PlayerSettingChangeCommand';

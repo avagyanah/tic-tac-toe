@@ -21,7 +21,7 @@ export default class ProfilePopup extends BasePopup {
     const gamesPlayedField: GamesPlayedField = new GamesPlayedField();
     gamesPlayedField.position.set(CENTER.x - deviance.x, centerY);
     //
-    const ratingField: RagingField = new RagingField();
+    const ratingField: RatingField = new RatingField();
     ratingField.position.set(CENTER.x - deviance.x, centerY + 1 * deviance.y);
     //
     this.addChild(nameField, skillField, gamesPlayedField, ratingField);
@@ -30,13 +30,13 @@ export default class ProfilePopup extends BasePopup {
 
 class NameField extends BaseField {
   constructor() {
-    super('name', playerProxy.name);
+    super('name', playerProxy.user.name);
   }
 }
 
 class SkillField extends BaseField {
   constructor() {
-    super('skill', getEnumKey(SkillType, playerProxy.skill));
+    super('skill', getEnumKey(SkillType, playerProxy.user.skill));
   }
 }
 
@@ -46,9 +46,9 @@ class GamesPlayedField extends BaseField {
   }
 }
 
-class RagingField extends BaseField {
+class RatingField extends BaseField {
   constructor() {
-    super('rating', playerProxy.rating.toString());
+    super('rating', playerProxy.user.rating.toString());
   }
 }
 //

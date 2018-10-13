@@ -1,42 +1,41 @@
+const settingsProxy: ISettingsVO = generateProxy(settingsVO);
+const userProxy: IUserVO = generateProxy({ ...userVO });
+
 const vo: any = {
-  ...userVO,
+  user: userProxy,
+  settings: settingsProxy,
   gamesPlayed: 0,
-  player: PlayerType.X,
-  gameSize: 3,
-  soundState: SwitcherState.ON,
-  musicState: SwitcherState.OFF,
   getSavableData: () => {
     return {
-      id: vo.id,
-      name: vo.name,
-      rating: vo.rating,
-      skill: vo.skill,
-      timescale: vo.timescale,
+      user: vo.user,
+      settings: vo.settings,
       gamesPlayed: vo.gamesPlayed,
-      player: vo.player,
-      gameSize: vo.gameSize,
-      soundState: vo.soundState,
-      musicState: vo.musicState,
     };
   },
   sync: (data: IStoredPlayerData) => {
-    vo.id = data.id || vo.id;
-    vo.name = data.name || vo.id;
-    vo.rating = data.rating || vo.rating;
-    vo.skill = data.skill || vo.skill;
-    vo.timescale = data.timescale || vo.timescale;
+    vo.user.id = data.user.id || vo.user.id;
+    vo.user.name = data.user.name || vo.user.name;
+    vo.user.rating = data.user.rating || vo.user.rating;
+    vo.user.skill = data.user.skill || vo.user.skill;
+    vo.user.name = data.user.id || vo.user.id;
+    vo.settings.player = data.settings.player || vo.settings.player;
+    vo.settings.gameSize = data.settings.gameSize || vo.settings.gameSize;
+    vo.settings.soundState = data.settings.soundState || vo.settings.soundState;
+    vo.settings.musicState = data.settings.musicState || vo.settings.musicState;
     vo.gamesPlayed = data.gamesPlayed || vo.gamesPlayed;
-    vo.player = data.player || vo.player;
-    vo.gameSize = data.gameSize || vo.gameSize;
-    vo.soundState = data.soundState || vo.soundState;
-    vo.musicState = data.musicState || vo.musicState;
   },
 };
+
 const playerProxy: IPlayerProxy = generateProxy(vo);
 
-export { playerProxy, IPlayerProxy };
+export { playerProxy, IPlayerProxy, settingsProxy, userProxy };
 //
-import { PlayerType, SwitcherState } from '../constants/Collections';
-import { IPlayerProxy, IStoredPlayerData } from '../constants/Types';
+import {
+  IPlayerProxy,
+  ISettingsVO,
+  IStoredPlayerData,
+  IUserVO,
+} from '../constants/Types';
 import { generateProxy } from '../utils/Utils';
+import { settingsVO } from './SettingsVO';
 import { userVO } from './UserVO';

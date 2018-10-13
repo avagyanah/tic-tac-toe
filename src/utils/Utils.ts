@@ -2,29 +2,36 @@
 import firebase from 'firebase/app';
 // tslint:disable-next-line
 import 'firebase/firestore';
-import { CompleteCallback, PlayOptions } from 'pixi-sound';
 import store from 'store';
 import { SwitcherState } from '../constants/Collections';
 import { STORAGE_PLAYER_NAME } from '../constants/Constants';
+import { IAudioConfig } from '../constants/Types';
 import { VO } from '../vo/VO';
 
-function PlaySound(
-  alias: string,
-  options?: string | PlayOptions | CompleteCallback,
-): void {
-  if (store.get(`${STORAGE_PLAYER_NAME}`).soundState === SwitcherState.OFF) {
-    return;
-  }
-  PIXI.sound.play(alias, options);
+function playSound(audioData: IAudioConfig): void {
+  try {
+    if (
+      store.get(`${STORAGE_PLAYER_NAME}`).settings.soundState ===
+      SwitcherState.OFF
+    ) {
+      return;
+    }
+    playAudio(audioData);
+  } catch (error) {}
 }
-function PlayMusic(
-  alias: string,
-  options?: string | PlayOptions | CompleteCallback,
-): void {
-  if (store.get(`${STORAGE_PLAYER_NAME}`).musicState === SwitcherState.OFF) {
-    return;
-  }
-  PIXI.sound.play(alias, options);
+function playMusic(audioData: IAudioConfig): void {
+  try {
+    if (
+      store.get(`${STORAGE_PLAYER_NAME}`).settings.musicState ===
+      SwitcherState.OFF
+    ) {
+      return;
+    }
+    playAudio(audioData);
+  } catch (error) {}
+}
+function playAudio(audioData: IAudioConfig): void {
+  PIXI.sound.play(audioData.alias, audioData.options);
 }
 
 function generateProxy(object: any): any {
@@ -78,35 +85,35 @@ function arrayToUppercase(arr: any[]): any[] {
   return arr;
 }
 
-function setLocalStorageData(docID: string, data: any): void {
-  store.set(docID, serialize(data));
+function setLocalStorageData(docID: string, data: any): any {
+  return store.set(docID, serialize(data));
 }
-function getLocalStorageData(docID: string): void {
-  store.get(docID);
+function getLocalStorageData(docID: string): any {
+  return store.get(docID);
 }
 function deleteLocalStorageData(docID: string): void {
   store.remove(docID);
 }
 
-async function getFirebaseDataAsync(docId: string): Promise<void> {
-  const dataObj: any = firebase
+async function getFirebaseDataAsync(docId: string): Promise<any> {
+  return firebase
     .firestore()
     .doc(docId)
     .get()
     .then((doc: any) => {
-      return dataObj;
+      return doc.data();
     })
     .catch((err: any) => {
       console.warn(err);
     });
 }
 async function setFirebaseDataAsync(docId: string, data: any): Promise<void> {
-  firebase
+  return firebase
     .firestore()
     .doc(docId)
     .set(serialize(data))
     .then((doc: any) => {
-      // ...
+      return doc.data();
     })
     .catch((err: any) => {
       console.warn(err);
@@ -130,8 +137,8 @@ function serialize(obj: any): any {
 }
 
 export {
-  PlaySound,
-  PlayMusic,
+  playSound,
+  playMusic,
   generateProxy,
   getEnumValues,
   getEnumKeys,

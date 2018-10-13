@@ -1,15 +1,18 @@
 const settingsProxy: ISettingsVO = generateProxy(settingsVO);
 const userProxy: IUserVO = generateProxy({ ...userVO });
 
-const vo: any = {
+// @ts-ignore
+const vo: IPlayerProxy = {
   user: userProxy,
   settings: settingsProxy,
   gamesPlayed: 0,
+  syncIDs: ['111'],
   getSavableData: () => {
     return {
       user: vo.user,
       settings: vo.settings,
       gamesPlayed: vo.gamesPlayed,
+      syncIDs: vo.syncIDs,
     };
   },
   sync: (data: IStoredPlayerData) => {
@@ -24,6 +27,7 @@ const vo: any = {
     vo.settings.musicState = data.settings.musicState || vo.settings.musicState;
 
     vo.gamesPlayed = data.gamesPlayed || vo.gamesPlayed;
+    vo.syncIDs = data.syncIDs || vo.syncIDs;
   },
 };
 

@@ -6,6 +6,6 @@ export function SoundStateChangeCommand(increment: number): void {
   );
 }
 //
-import { SwitcherState } from '../../constants/Collections';
-import { getEnumValues } from '../../utils/Utils';
+import { SwitcherState } from '../../../constants/Collections';
+import { getEnumValues } from '../../../utils/Utils';
 import { PlayerSettingChangeCommand } from './PlayerSettingChangeCommand';

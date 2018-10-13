@@ -3,7 +3,8 @@ const popupVO: any = {
 };
 const popupProxy: IPopupProxy = generateProxy(popupVO);
 
-const viewVO: any = {
+// @ts-ignore
+const viewVO: IViewProxy = {
   popup: popupProxy,
 };
 

@@ -1,8 +1,10 @@
 import moment from 'moment';
 import uuid from 'uuid';
 import { SkillType } from '../constants/Collections';
+import { IUserVO } from '../constants/Types';
 
-const userVO: any = {
+// @ts-ignore
+const userVO: IUserVO = {
   id: uuid(),
   name: 'Guest',
   rating: 200,

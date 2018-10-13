@@ -1,6 +1,8 @@
 import { PlayerType, SwitcherState } from '../constants/Collections';
+import { ISettingsVO } from '../constants/Types';
 
-const settingsVO: any = {
+// @ts-ignore
+const settingsVO: ISettingsVO = {
   player: PlayerType.X,
   gameSize: 3,
   soundState: SwitcherState.ON,

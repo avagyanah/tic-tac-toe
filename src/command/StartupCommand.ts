@@ -1,6 +1,8 @@
-import { InitializeFirestoreCommand } from './InitializeFirestoreCommand';
+import { FirestoreInitializeCommand } from './FirestoreInitializeCommand';
+import { PlayerInitializeCommand } from './player/PlayerInitializeCommand';
 
 export function StartupCommand(): void {
-  InitializeFirestoreCommand();
+  FirestoreInitializeCommand();
+  PlayerInitializeCommand();
 }
 //

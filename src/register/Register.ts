@@ -46,7 +46,6 @@ export default class Register {
       PreloadSceneLoadCompleteCommand,
     );
     Register.eventsMap.set(BACKGROUND_SCENE_START, BackgroundSceneStartCommand);
-    Register.eventsMap.set(LOBBY_SCENE_START, LobbySceneStartCommand);
     Register.eventsMap.set(
       UI_SCENE_SETTING_CLICK,
       UISettingsButtonClickCommand,
@@ -79,14 +78,13 @@ export default class Register {
 }
 //
 import { PlayerMoveCommand } from '../command/game/PlayerMoveCommand';
-import { DefaultGameSizeChangeCommand } from '../command/player/DefaultGameSizeChangeCommand';
-import { DefaultPlayerChangeCommand } from '../command/player/DefaultPlayerChangeCommand';
-import { MusicStateChangeCommand } from '../command/player/MusicStateChangeCommand';
-import { SoundStateChangeCommand } from '../command/player/SoundStateChangeCommand';
+import { DefaultGameSizeChangeCommand } from '../command/player/settings/DefaultGameSizeChangeCommand';
+import { DefaultPlayerChangeCommand } from '../command/player/settings/DefaultPlayerChangeCommand';
+import { MusicStateChangeCommand } from '../command/player/settings/MusicStateChangeCommand';
+import { SoundStateChangeCommand } from '../command/player/settings/SoundStateChangeCommand';
 import { BackgroundSceneStartCommand } from '../command/scenes/background/BackgroundSceneStartCommand';
 import { GameSceneStartCommand } from '../command/scenes/game/GameSceneStartCommand';
 import { LobbyPlayButtonClickCommand } from '../command/scenes/lobby/LobbyPlayButtonClickCommand';
-import { LobbySceneStartCommand } from '../command/scenes/lobby/LobbySceneStartCommand';
 import { LobbySleepCompleteCommand } from '../command/scenes/lobby/LobbySleepCompleteCommand';
 import { LobbyWakeCompleteCommand } from '../command/scenes/lobby/LobbyWakeCompleteCommand';
 import { PopupHideCompleteCommand } from '../command/scenes/popup/PopupHideCompleteCommand';
@@ -108,7 +106,6 @@ import { GAME_SCENE_START } from '../view/scenes/GameScene';
 import {
   LOBBY_SCENE_PLAY_CLICK,
   LOBBY_SCENE_SLEEP,
-  LOBBY_SCENE_START,
   LOBBY_SCENE_WAKE,
 } from '../view/scenes/LobbyScene';
 import { POPUP_HIDE_COMPLETE } from '../view/scenes/PopupScene';

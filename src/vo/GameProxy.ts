@@ -1,4 +1,5 @@
-const vo: any = {
+// @ts-ignore
+const vo: IGameProxy = {
   board: [],
   resolved: false,
   difficulty: 0,

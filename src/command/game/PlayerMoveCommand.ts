@@ -1,6 +1,7 @@
 export function PlayerMoveCommand(i: number): void {
-  PlaySound(Audios.Sounds.ClickSound.Name, {
-    volume: 1,
+  playSound({
+    alias: Audios.Sounds.ClickSound.Name,
+    options: { volume: 1 },
   });
   //
   gameProxy.board[i] = playerProxy.settings.player;
@@ -10,7 +11,7 @@ export function PlayerMoveCommand(i: number): void {
 }
 //
 import { Audios } from '../../assets';
-import { PlaySound } from '../../utils/Utils';
+import { playSound } from '../../utils/Utils';
 import { gameProxy } from '../../vo/GameProxy';
 import LB, { IState } from '../../vo/LB';
 import { playerProxy } from '../../vo/PlayerProxy';

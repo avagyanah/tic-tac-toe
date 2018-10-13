@@ -1,4 +1,3 @@
-export const LOBBY_SCENE_START: string = 'LobbySceneStart';
 export const LOBBY_SCENE_WAKE: string = 'LobbySceneWake';
 export const LOBBY_SCENE_SLEEP: string = 'LobbySceneSleep';
 export const LOBBY_SCENE_PLAY_CLICK: string = 'LobbyScenePlayClick';

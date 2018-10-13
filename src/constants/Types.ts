@@ -1,4 +1,5 @@
-import { PlayerType, SkillType } from './Collections';
+import { CompleteCallback, PlayOptions } from 'pixi-sound';
+import { PlayerType, SkillType, SwitcherState } from './Collections';
 declare global {
   // tslint:disable-next-line
   interface Window {
@@ -54,6 +55,7 @@ export interface IPlayerProxy extends IVO {
   user: IUserVO;
   settings: ISettingsVO;
   gamesPlayed: number;
+  syncIDs: string[];
   getSavableData: () => IStoredPlayerData;
   sync: (data: IStoredPlayerData) => void;
 }
@@ -63,16 +65,18 @@ export interface IUserVO extends IVO {
   name: string;
   rating: number;
   skill: SkillType;
+  timescale: number;
 }
 export interface ISettingsVO extends IVO {
   player: PlayerType;
   gameSize: number;
-  soundState: string;
-  musicState: string;
+  soundState: SwitcherState;
+  musicState: SwitcherState;
 }
 export interface IStoredPlayerData {
   user: IUserVO;
   settings: ISettingsVO;
+  syncIDs: string[];
   gamesPlayed: number;
 }
 //
@@ -81,5 +85,10 @@ export interface IGameProxy extends IVO {
   board: number[];
   resolved: boolean;
   size: number;
+}
+//
+export interface IAudioConfig {
+  alias: string;
+  options?: string | PlayOptions | CompleteCallback;
 }
 //

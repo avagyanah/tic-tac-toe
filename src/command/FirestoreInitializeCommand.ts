@@ -1,4 +1,4 @@
-export function InitializeFirestoreCommand(): void {
+export function FirestoreInitializeCommand(): void {
   firebase.initializeApp({
     apiKey: 'AIzaSyAKi-NpAFs_nQtBGO8fRtzr8BK7VsegAHQ',
     authDomain: 'tic-tac-toe-f54f7.firebaseapp.com',

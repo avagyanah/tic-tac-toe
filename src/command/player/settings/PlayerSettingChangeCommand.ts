@@ -14,5 +14,5 @@ export function PlayerSettingChangeCommand(
   }
 }
 //
-import { playerProxy } from '../../vo/PlayerProxy';
-import { PlayerSaveCommand } from './save/PlayerSaveCommand';
+import { playerProxy } from '../../../vo/PlayerProxy';
+import { PlayerSaveCommand } from '../save/PlayerSaveCommand';

@@ -3,11 +3,11 @@ const loadProgressInfo: (url: string, loaded: number, total: number) => void = (
   loaded: number,
   total: number,
 ) => {
-  console.log(
-    `| ${url} | ${loaded} of ${total} | ${((loaded / total) * 100).toFixed(
-      0,
-    )} % |`,
-  );
+  // console.log(
+  //   `| ${url} | ${loaded} of ${total} | ${((loaded / total) * 100).toFixed(
+  //     0,
+  //   )} % |`,
+  // );
 };
 const loadCompleteInfo: (key: string) => void = (key: string) => {
   console.log(`${key.toUpperCase()} LOAD COMPLETE`);

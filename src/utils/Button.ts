@@ -18,9 +18,12 @@ export class Button extends PIXI.Sprite {
   }
 
   private onDown(): void {
-    PlaySound(this.config.clickSound.alias, this.config.clickSound.options);
+    playSound({
+      alias: this.config.clickSound.alias,
+      options: this.config.clickSound.options,
+    });
   }
 }
 //
 import { IButtonConfig } from '../view/components/buttons/ButtonConfigs';
-import { PlaySound } from './Utils';
+import { playSound } from './Utils';

@@ -1,5 +1,5 @@
 export function PlayerInitializeCommand(): void {
-  const data: IStoredPlayerData = store.get(`${STORAGE_PLAYER_NAME}`);
+  const data: IStoredPlayerData = store.get(STORAGE_PLAYER_NAME);
   if (!data) {
     PlayerSaveCommand();
   } else {

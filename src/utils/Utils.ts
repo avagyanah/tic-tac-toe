@@ -1,4 +1,6 @@
+// tslint:disable-next-line
 import firebase from 'firebase/app';
+// tslint:disable-next-line
 import 'firebase/firestore';
 import { CompleteCallback, PlayOptions } from 'pixi-sound';
 import store from 'store';
@@ -76,6 +78,16 @@ function arrayToUppercase(arr: any[]): any[] {
   return arr;
 }
 
+function setLocalStorageData(docID: string, data: any): void {
+  store.set(docID, serialize(data));
+}
+function getLocalStorageData(docID: string): void {
+  store.get(docID);
+}
+function deleteLocalStorageData(docID: string): void {
+  store.remove(docID);
+}
+
 async function getFirebaseDataAsync(docId: string): Promise<void> {
   const dataObj: any = firebase
     .firestore()
@@ -88,12 +100,11 @@ async function getFirebaseDataAsync(docId: string): Promise<void> {
       console.warn(err);
     });
 }
-
 async function setFirebaseDataAsync(docId: string, data: any): Promise<void> {
   firebase
     .firestore()
     .doc(docId)
-    .set(data)
+    .set(serialize(data))
     .then((doc: any) => {
       // ...
     })
@@ -132,4 +143,7 @@ export {
   deleteFirebaseDataAsync,
   getFirebaseDataAsync,
   serialize,
+  setLocalStorageData,
+  getLocalStorageData,
+  deleteLocalStorageData,
 };

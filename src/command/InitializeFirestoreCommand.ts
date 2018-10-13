@@ -9,4 +9,5 @@ export function InitializeFirestoreCommand(): void {
   });
 }
 //
+// tslint:disable-next-line
 import firebase from 'firebase/app';

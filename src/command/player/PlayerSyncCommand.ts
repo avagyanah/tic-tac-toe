@@ -1,5 +1,5 @@
 export function PlayerSyncCommand(): void {
-  playerProxy.sync(store.get(`${STORAGE_PLAYER_NAME}`));
+  playerProxy.sync(store.get(STORAGE_PLAYER_NAME));
 }
 //
 import store from 'store';

@@ -1,4 +1,4 @@
-export function PlayerSaveRemoteCommand(): Promise<IStoredPlayerData> {
+export function PlayerSaveRemoteCommand(): Promise<void> {
   const data: IStoredPlayerData = playerProxy.getSavableData();
   return setFirebaseDataAsync(
     `${FIRESTORE_PLAYERS_COLLECTION_NAME}/${data.user.id}`,

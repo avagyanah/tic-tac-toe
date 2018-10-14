@@ -28,7 +28,9 @@ function playMusic(audioData: IAudioConfig): void {
       return;
     }
     playAudio(audioData);
-  } catch (error) {}
+  } catch (error) {
+    console.warn(error);
+  }
 }
 function playAudio(audioData: IAudioConfig): void {
   PIXI.sound.play(audioData.alias, audioData.options);
@@ -48,7 +50,7 @@ function generateProxy(object: any): any {
     ): boolean {
       target[property] = value;
       object.observers.forEach((observer: any) => {
-        observer.updateView(property, target[property]);
+        observer.updateView(property, target[property], receiver);
       });
       return true;
     },
@@ -110,13 +112,13 @@ async function getFirebaseDataAsync(docId: string): Promise<IStoredPlayerData> {
 async function setFirebaseDataAsync(
   docId: string,
   data: IStoredPlayerData,
-): Promise<IStoredPlayerData> {
+): Promise<void> {
   return firebase
     .firestore()
     .doc(docId)
     .set(serialize(data))
-    .then((doc: any) => {
-      return doc.data();
+    .then(() => {
+      return;
     })
     .catch((err: any) => {
       console.warn(err);

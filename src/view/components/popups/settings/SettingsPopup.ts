@@ -22,25 +22,34 @@ export default class SettingsPopup extends BasePopup {
     super.destroy(options);
   }
 
-  protected updateView(key: string, value: any): void {
-    switch (key) {
-      case 'player':
-        this.playerOption.setActiveValue(getEnumKey(PlayerType, value), true);
-        break;
-      case 'gameSize':
-        this.sizeOption.setActiveValue(value, true);
-        break;
-      case 'soundState':
-        this.soundOption.setActiveValue(
-          getEnumKey(SwitcherState, value).toLowerCase(),
-          true,
-        );
-        break;
-      case 'musicState':
-        this.musicOption.setActiveValue(
-          getEnumKey(SwitcherState, value).toLowerCase(),
-          true,
-        );
+  protected updateView(key: string, value: any, receiver: any): void {
+    switch (receiver) {
+      case settingsProxy:
+        switch (key) {
+          case 'player':
+            this.playerOption.setActiveValue(
+              getEnumKey(PlayerType, value),
+              true,
+            );
+            break;
+          case 'gameSize':
+            this.sizeOption.setActiveValue(value, true);
+            break;
+          case 'soundState':
+            this.soundOption.setActiveValue(
+              getEnumKey(SwitcherState, value).toLowerCase(),
+              true,
+            );
+            break;
+          case 'musicState':
+            this.musicOption.setActiveValue(
+              getEnumKey(SwitcherState, value).toLowerCase(),
+              true,
+            );
+            break;
+          default:
+            break;
+        }
         break;
       default:
         break;

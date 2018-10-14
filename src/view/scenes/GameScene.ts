@@ -8,16 +8,22 @@ export class GameScene extends BaseScene {
     gameProxy.registerObserver(this);
   }
 
-  protected updateView(key: string, value: any): void {
-    switch (value) {
-      case gameProxy.size:
-        this.createBoard(value);
-        break;
-      case gameProxy.board:
-        this.updateBoard(value);
-        break;
-      case gameProxy.resolved:
-        value && this.disableBoardInput();
+  protected updateView(key: string, value: any, receiver: any): void {
+    switch (receiver) {
+      case gameProxy:
+        switch (key) {
+          case 'size':
+            this.createBoard(value);
+            break;
+          case 'board':
+            this.updateBoard(value);
+            break;
+          case 'resolved':
+            value && this.disableBoardInput();
+            break;
+          default:
+            break;
+        }
         break;
       default:
         break;

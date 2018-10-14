@@ -26,7 +26,9 @@ export default class BaseScene extends PIXI.Container implements IScene {
     Register.emit(`${this.constructor.name}Sleep`);
   }
 
-  protected updateView(key: string, value: any, receiver: any): void {}
+  protected updateView(key: string, value: any, receiver: any): void {
+    // ...
+  }
 }
 //
 import { IGame, IScene } from '../../constants/Types';

@@ -4,6 +4,7 @@ import firebase from 'firebase/app';
 import { FIRESTORE_PLAYERS_COLLECTION_NAME } from '../../../constants/Constants';
 import { IStoredPlayerData } from '../../../constants/Types';
 import { playerProxy } from '../../../vo/PlayerProxy';
+import { PlayerSyncCommand } from './PlayerSyncCommand';
 
 export async function PlayerSyncRemoteBySyncIDsCommand(): Promise<any> {
   return new Promise((resolve: any, reject: any) => {
@@ -23,7 +24,7 @@ export async function PlayerSyncRemoteBySyncIDsCommand(): Promise<any> {
             resolve(null);
           } else {
             const data: IStoredPlayerData = docRef.docs[0].data();
-            playerProxy.sync(data);
+            PlayerSyncCommand(data);
             resolve(data);
             return;
           }

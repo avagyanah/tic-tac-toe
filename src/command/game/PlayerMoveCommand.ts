@@ -9,6 +9,7 @@ export function PlayerMoveCommand(i: number): void {
   gameProxy.board = state.board;
   gameProxy.resolvedLine = state.resolvedState.line;
   gameProxy.winner = state.resolvedState.winner;
+  // state.resolvedState.winner && PopupShowCommand(GameResolvedPopup);
 }
 //
 import { Audios } from '../../assets';

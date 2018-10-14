@@ -84,8 +84,9 @@ export interface IStoredPlayerData {
 export interface IGameProxy extends IVO {
   difficulty: number;
   board: number[];
-  resolved: boolean;
+  resolvedLine: number[];
   size: number;
+  winner: PlayerType;
 }
 //
 export interface IAudioConfig {

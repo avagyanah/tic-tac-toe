@@ -5,13 +5,14 @@ export function PlayerMoveCommand(i: number): void {
   });
   //
   gameProxy.board[i] = playerProxy.settings.player;
-  const state: IState = LB.move(gameProxy.board);
+  const state: IGameState = LB.move(gameProxy.board);
   gameProxy.board = state.board;
-  gameProxy.resolved = state.resolved;
+  gameProxy.resolvedLine = state.resolvedState.line;
+  gameProxy.winner = state.resolvedState.winner;
 }
 //
 import { Audios } from '../../assets';
 import { playSound } from '../../utils/Utils';
 import { gameProxy } from '../../vo/GameProxy';
-import LB, { IState } from '../../vo/LB';
+import LB, { IGameState } from '../../vo/LB';
 import { playerProxy } from '../../vo/PlayerProxy';

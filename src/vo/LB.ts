@@ -1,11 +1,16 @@
 import { PlayerType } from '../constants/Collections';
 
-/*0 0 1*/
-/*1 0 2*/
-/*0 0 0*/
-export interface IState {
+/* 2 0 1 */
+/* 0 1 2 */
+/* 1 0 0 */
+export interface IGameState {
   board: number[];
-  resolved: boolean;
+  resolvedState: IResolvedState;
+}
+
+interface IResolvedState {
+  line: number[];
+  winner: PlayerType;
 }
 
 export default class LB {
@@ -13,46 +18,33 @@ export default class LB {
     this.winingLines = this.getWiningLines(size);
   }
 
-  public static move(board: number[]): IState {
-    const player: number = this.definePlayer(board);
-    const index: number = this.getFirstEmpty(board);
-    let resolved: boolean = this.checkForResolvedGame(board);
-    if (!resolved) {
-      board[index] = player;
-      resolved = this.checkForResolvedGame(board);
+  public static move(board: number[]): IGameState {
+    let resolvedState: IResolvedState = this.checkForResolvedGame(board);
+    if (resolvedState.winner) {
+      return { board, resolvedState };
     }
-    return { board, resolved };
-    // return this._move(board, player, index);
+    //
+    const player: PlayerType = this.definePlayer(board);
+    const index: number = this.getFirstEmpty(board);
+    board[index] = player;
+    resolvedState = this.checkForResolvedGame(board);
+    // get move by minmax depends on depth/difficulty
+    return { board, resolvedState };
   }
 
   private static winingLines: number[][] = [];
 
   //
-  // private static _move(
-  //   board: number[],
-  //   player: number,
-  //   index: number,
-  // ): number[] {
-  //   while (index !== -1) {
-  //     board[index] = player;
-  //     player = player === Player.X ? Player.O : Player.X;
-  //     index = this.getFirstEmpty(board);
-  //     this._move(board, player, index);
-  //   }
-  //   return board;
-  // }
-
-  //
-  private static checkForResolvedGame(board: number[]): boolean {
+  private static checkForResolvedGame(board: number[]): IResolvedState {
     for (const line of this.winingLines) {
       const isOver: boolean = line.every((i: number) => {
         return board[i] && board[i] === board[line[0]];
       });
       if (isOver) {
-        return isOver;
+        return { line, winner: board[line[0]] };
       }
     }
-    return false;
+    return { line: [], winner: null };
   }
 
   private static getWiningLines(n: number): number[][] {
@@ -76,18 +68,7 @@ export default class LB {
     return winLines;
   }
 
-  private static definePlayer(board: number[]): number {
-    // const xArr: number[] = [];
-    // const oArr: number[] = [];
-    // board.forEach((el: number) => {
-    //   if (el) {
-    //     if (el === Player.X) {
-    //       xArr.push(el);
-    //     } else {
-    //       oArr.push(el);
-    //     }
-    //   }
-    // });
+  private static definePlayer(board: number[]): PlayerType {
     const xArr: number[] = board.filter((i: number) => i === PlayerType.X);
     const oArr: number[] = board.filter((i: number) => i === PlayerType.O);
 

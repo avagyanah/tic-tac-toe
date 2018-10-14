@@ -1,9 +1,10 @@
 // @ts-ignore
 const vo: IGameProxy = {
   board: [],
-  resolved: false,
+  resolvedLine: [],
   difficulty: 0,
   size: NaN,
+  winner: null,
 };
 const gameProxy: IGameProxy = generateProxy(vo);
 export { gameProxy, IGameProxy };

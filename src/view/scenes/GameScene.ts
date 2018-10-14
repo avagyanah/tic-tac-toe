@@ -13,13 +13,13 @@ export class GameScene extends BaseScene {
       case gameProxy:
         switch (key) {
           case 'size':
-            this.createBoard(value);
+            this.startGame(value);
             break;
           case 'board':
             this.updateBoard(value);
             break;
-          case 'resolved':
-            value && this.disableBoardInput();
+          case 'winner':
+            value && this.stopGame(value);
             break;
           default:
             break;
@@ -28,6 +28,14 @@ export class GameScene extends BaseScene {
       default:
         break;
     }
+  }
+
+  private startGame(boardSize: number): void {
+    this.createBoard(boardSize);
+  }
+  private stopGame(winner: PlayerType): void {
+    this.disableBoardInput();
+    this.drawResolvedLine(gameProxy.resolvedLine, winner);
   }
 
   private createBoard(size: number): void {
@@ -63,6 +71,16 @@ export class GameScene extends BaseScene {
   private disableBoardInput(): void {
     this.board.forEach((square: Square) => (square.interactive = false));
   }
+  private drawResolvedLine(resolvedLine: number[], winner: PlayerType): void {
+    const color: number =
+      winner === playerProxy.settings.player ? 0x0ccc55 : 0xf45a5a;
+    resolvedLine.forEach((i: number) => {
+      const square: Square = this.board[i];
+      square.tint = color;
+      square.shake();
+    });
+  }
+
   private updateBoard(board: number[]): void {
     for (let i: number = 0; i < board.length; ++i) {
       const square: Square = this.board[i];
@@ -81,9 +99,11 @@ export class GameScene extends BaseScene {
 }
 //
 import { Expo, TweenLite } from 'gsap';
+import { PlayerType } from '../../constants/Collections';
 import { CENTER, GAME_WIDTH } from '../../constants/Constants';
 import { IGame } from '../../constants/Types';
 import Register from '../../register/Register';
 import { gameProxy } from '../../vo/GameProxy';
+import { playerProxy } from '../../vo/PlayerProxy';
 import Square, { SQUARE_CLICK } from '../components/Square';
 import BaseScene from './BaseScene';

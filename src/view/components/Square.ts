@@ -8,6 +8,25 @@ export default class Square extends PIXI.Sprite {
     this.anchor.set(0.5);
   }
 
+  public shake(): void {
+    TweenLite.fromTo(
+      this,
+      0.3,
+      { x: '-=1' },
+      {
+        x: '+=1',
+        // @ts-ignore
+        ease: RoughEase.ease.config({
+          strength: 15,
+          points: 20,
+          template: Linear.easeNone,
+          randomize: false,
+        }),
+        clearProps: 'x',
+      },
+    );
+  }
+
   public get type(): number {
     return this._type;
   }
@@ -48,6 +67,7 @@ export default class Square extends PIXI.Sprite {
   }
 }
 //
+import { Linear, TweenLite } from 'gsap';
 import { DisplayObject } from 'pixi.js';
 import { Images } from '../../assets';
 import { PlayerType } from '../../constants/Collections';

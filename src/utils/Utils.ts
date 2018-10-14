@@ -5,7 +5,7 @@ import 'firebase/firestore';
 import store from 'store';
 import { SwitcherState } from '../constants/Collections';
 import { STORAGE_PLAYER_NAME } from '../constants/Constants';
-import { IAudioConfig } from '../constants/Types';
+import { IAudioConfig, IStoredPlayerData } from '../constants/Types';
 import { VO } from '../vo/VO';
 
 function playSound(audioData: IAudioConfig): void {
@@ -95,7 +95,7 @@ function deleteLocalStorageData(docID: string): void {
   store.remove(docID);
 }
 
-async function getFirebaseDataAsync(docId: string): Promise<any> {
+async function getFirebaseDataAsync(docId: string): Promise<IStoredPlayerData> {
   return firebase
     .firestore()
     .doc(docId)
@@ -107,7 +107,10 @@ async function getFirebaseDataAsync(docId: string): Promise<any> {
       console.warn(err);
     });
 }
-async function setFirebaseDataAsync(docId: string, data: any): Promise<void> {
+async function setFirebaseDataAsync(
+  docId: string,
+  data: IStoredPlayerData,
+): Promise<IStoredPlayerData> {
   return firebase
     .firestore()
     .doc(docId)

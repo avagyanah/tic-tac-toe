@@ -1,6 +1,6 @@
-export function PlayerSaveCommand(): void {
+export async function PlayerSaveCommand(): Promise<void> {
   PlayerSaveLocalCommand();
-  PlayerSaveRemoteCommand();
+  await PlayerSaveRemoteCommand();
 }
 //
 import { PlayerSaveLocalCommand } from './PlayerSaveLocalCommand';

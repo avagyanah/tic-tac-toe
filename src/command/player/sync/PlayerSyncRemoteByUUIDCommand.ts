@@ -1,8 +1,9 @@
-export async function PlayerSyncRemoteByUUIDCommand(): Promise<void> {
-  const data: IStoredPlayerData = await getFirebaseDataAsync(
+export function PlayerSyncRemoteByUUIDCommand(): Promise<void> {
+  return getFirebaseDataAsync(
     `${FIRESTORE_PLAYERS_COLLECTION_NAME}/${playerProxy.user.id}`,
-  );
-  playerProxy.sync(data);
+  ).then((data: IStoredPlayerData) => {
+    playerProxy.sync(data);
+  });
 }
 //
 // tslint:disable-next-line

@@ -6,13 +6,15 @@ const vo: IPlayerProxy = {
   user: userProxy,
   settings: settingsProxy,
   gamesPlayed: 0,
-  syncIDs: ['111'],
+  syncIDs: [],
+  timescale: moment.utc().valueOf(),
   getSavableData: () => {
     return {
       user: vo.user,
       settings: vo.settings,
       gamesPlayed: vo.gamesPlayed,
       syncIDs: vo.syncIDs,
+      timescale: vo.timescale,
     };
   },
   sync: (data: IStoredPlayerData) => {
@@ -28,6 +30,7 @@ const vo: IPlayerProxy = {
 
     vo.gamesPlayed = data.gamesPlayed || vo.gamesPlayed;
     vo.syncIDs = data.syncIDs || vo.syncIDs;
+    vo.timescale = data.timescale || vo.timescale;
   },
 };
 
@@ -35,6 +38,7 @@ const playerProxy: IPlayerProxy = generateProxy(vo);
 
 export { playerProxy, IPlayerProxy, settingsProxy, userProxy };
 //
+import moment from 'moment';
 import {
   IPlayerProxy,
   ISettingsVO,

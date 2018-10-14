@@ -56,6 +56,7 @@ export interface IPlayerProxy extends IVO {
   settings: ISettingsVO;
   gamesPlayed: number;
   syncIDs: string[];
+  timescale: number;
   getSavableData: () => IStoredPlayerData;
   sync: (data: IStoredPlayerData) => void;
 }
@@ -65,7 +66,6 @@ export interface IUserVO extends IVO {
   name: string;
   rating: number;
   skill: SkillType;
-  timescale: number;
 }
 export interface ISettingsVO extends IVO {
   player: PlayerType;
@@ -78,6 +78,7 @@ export interface IStoredPlayerData {
   settings: ISettingsVO;
   syncIDs: string[];
   gamesPlayed: number;
+  timescale: number;
 }
 //
 export interface IGameProxy extends IVO {

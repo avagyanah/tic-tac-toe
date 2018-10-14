@@ -1,4 +1,3 @@
-import moment from 'moment';
 import uuid from 'uuid';
 import { SkillType } from '../constants/Collections';
 import { IUserVO } from '../constants/Types';
@@ -9,7 +8,6 @@ const userVO: IUserVO = {
   name: 'Guest',
   rating: 200,
   skill: SkillType.Beginner,
-  timescale: moment.utc().valueOf(),
 };
 
 export { userVO };

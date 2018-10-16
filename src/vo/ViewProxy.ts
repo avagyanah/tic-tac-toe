@@ -1,16 +1,15 @@
 const popupVO: any = {
   queue: [],
 };
-const popupProxy: IPopupProxy = generateProxy(popupVO);
 
 // @ts-ignore
 const viewVO: IViewProxy = {
-  popup: popupProxy,
+  popup: generateProxy(popupVO),
 };
 
 const viewProxy: IViewProxy = generateProxy(viewVO);
 //
-export { viewProxy, IPopupProxy, popupProxy, IViewProxy };
+export { viewProxy, IPopupProxy };
 //
 import { IPopupProxy, IViewProxy } from '../constants/Types';
 import { generateProxy } from '../utils/Utils';

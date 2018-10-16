@@ -1,10 +1,7 @@
-const settingsProxy: ISettingsVO = generateProxy(settingsVO);
-const userProxy: IUserVO = generateProxy({ ...userVO });
-
 // @ts-ignore
 const vo: IPlayerProxy = {
-  user: userProxy,
-  settings: settingsProxy,
+  user: generateProxy({ ...userVO }),
+  settings: generateProxy(settingsVO),
   gamesPlayed: 0,
   syncIDs: [],
   timescale: moment.utc().valueOf(),
@@ -36,7 +33,7 @@ const vo: IPlayerProxy = {
 
 const playerProxy: IPlayerProxy = generateProxy(vo);
 
-export { playerProxy, IPlayerProxy, settingsProxy, userProxy };
+export { playerProxy, IPlayerProxy };
 //
 import moment from 'moment';
 import {

@@ -11,20 +11,20 @@ export default class SettingsPopup extends BasePopup {
 
   constructor() {
     super(settingsPopup);
-    settingsProxy.registerObserver(this);
+    playerProxy.settings.registerObserver(this);
     //
     this.createOptions();
   }
 
   public destroy(options?: boolean | PIXI.DestroyOptions): void {
-    settingsProxy.removeObserver(this);
+    playerProxy.settings.removeObserver(this);
     //
     super.destroy(options);
   }
 
   protected updateView(key: string, value: any, receiver: any): void {
     switch (receiver) {
-      case settingsProxy:
+      case playerProxy.settings:
         switch (key) {
           case 'player':
             this.playerOption.setActiveValue(
@@ -108,7 +108,7 @@ import {
   getEnumKey,
   getEnumKeys,
 } from '../../../../utils/Utils';
-import { playerProxy, settingsProxy } from '../../../../vo/PlayerProxy';
+import { playerProxy } from '../../../../vo/PlayerProxy';
 import BasePopup from '../BasePopup';
 import { settingsPopup } from '../PopupConfigs';
 import { BaseOption } from './BaseOption';

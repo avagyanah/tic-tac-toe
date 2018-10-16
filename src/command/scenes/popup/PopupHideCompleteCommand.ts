@@ -1,7 +1,7 @@
 export function PopupHideCompleteCommand(popupClassName: string): void {
-  popupProxy.queue.shift();
-  popupProxy.queue = [...popupProxy.queue];
-  if (popupProxy.queue.length) {
+  viewProxy.popup.queue.shift();
+  viewProxy.popup.queue = [...viewProxy.popup.queue];
+  if (viewProxy.popup.queue.length) {
     return;
   }
   //
@@ -19,4 +19,4 @@ export function PopupHideCompleteCommand(popupClassName: string): void {
 }
 //
 import { POPUP_SCENE, UI_SCENE } from '../../../constants/Constants';
-import { popupProxy } from '../../../vo/ViewProxy';
+import { viewProxy } from '../../../vo/ViewProxy';

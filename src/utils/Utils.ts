@@ -118,7 +118,7 @@ async function setFirebaseDataAsync(
     .doc(docId)
     .set(serialize(data))
     .then(() => {
-      return;
+      // ...
     })
     .catch((err: any) => {
       console.warn(err);

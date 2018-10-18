@@ -81,12 +81,21 @@ export interface IStoredPlayerData {
   timescale: number;
 }
 //
+export interface IStoredFameData {
+  users: IUserVO[];
+}
+//
 export interface IGameProxy extends IVO {
   difficulty: number;
   board: number[];
   resolvedLine: number[];
   size: number;
   winner: PlayerType;
+}
+//
+export interface IFameProxy extends IVO {
+  users: IUserVO[];
+  sync: (data: IStoredFameData) => void;
 }
 //
 export interface IAudioConfig {

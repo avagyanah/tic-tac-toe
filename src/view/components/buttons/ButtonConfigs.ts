@@ -1,5 +1,5 @@
 const settingsBtn: IButtonConfig = {
-  upFrame: Images.SettingsIcon.Name,
+  upFrame: 'settings-icon.png',
   clickSound: {
     alias: Audios.Sounds.ClickSound.Name,
     options: {
@@ -8,7 +8,7 @@ const settingsBtn: IButtonConfig = {
   },
 };
 const fameBtn: IButtonConfig = {
-  upFrame: Images.FameIcon.Name,
+  upFrame: 'fame-icon.png',
   clickSound: {
     alias: Audios.Sounds.ClickSound.Name,
     options: {
@@ -26,7 +26,7 @@ const profileBtn: IButtonConfig = {
   },
 };
 const playBtn: IButtonConfig = {
-  upFrame: Images.TransparentPixel.Name,
+  upFrame: 'transparent-pixel.png',
   anchor: new PIXI.Point(0.5, 0.5),
   clickSound: {
     alias: Audios.Sounds.ClickSound.Name,
@@ -41,7 +41,7 @@ const playBtn: IButtonConfig = {
   alpha: 0,
 };
 const settingsPreviousBtn: IButtonConfig = {
-  upFrame: Images.Arrow.Name,
+  upFrame: 'arrow.png',
   clickSound: {
     alias: Audios.Sounds.ClickSound.Name,
     options: {

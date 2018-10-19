@@ -11,8 +11,8 @@ const famePopup: IPopupConfig = {
     },
   },
   blocker: { color: $blockerColor, alpha: 0.8 },
-  bg: { frame: Images.PopupBg.Name, offsetX: CENTER.x, offsetY: CENTER.y },
-  closeButton: { frame: Images.Close.Name },
+  bg: { frame: 'popup-bg.png', offsetX: CENTER.x, offsetY: CENTER.y },
+  closeButton: { frame: 'close.png' },
 };
 //
 const settingsPopup: IPopupConfig = {
@@ -26,8 +26,8 @@ const settingsPopup: IPopupConfig = {
     },
   },
   blocker: { color: $blockerColor, alpha: 0.8 },
-  bg: { frame: Images.PopupBg.Name, offsetX: CENTER.x, offsetY: CENTER.y },
-  closeButton: { frame: Images.Close.Name },
+  bg: { frame: 'popup-bg.png', offsetX: CENTER.x, offsetY: CENTER.y },
+  closeButton: { frame: 'close.png' },
 };
 //
 const profilePopup: IPopupConfig = {
@@ -41,8 +41,8 @@ const profilePopup: IPopupConfig = {
     },
   },
   blocker: { color: $blockerColor, alpha: 0.8 },
-  bg: { frame: Images.PopupBg.Name, offsetX: CENTER.x, offsetY: CENTER.y },
-  closeButton: { frame: Images.Close.Name },
+  bg: { frame: 'popup-bg.png', offsetX: CENTER.x, offsetY: CENTER.y },
+  closeButton: { frame: 'close.png' },
 };
 //
 const gameResolvedPopup: IPopupConfig = {
@@ -56,8 +56,8 @@ const gameResolvedPopup: IPopupConfig = {
     },
   },
   blocker: { color: $blockerColor, alpha: 0.8 },
-  bg: { frame: Images.PopupBg.Name, offsetX: CENTER.x, offsetY: CENTER.y },
-  closeButton: { frame: Images.Close.Name },
+  bg: { frame: 'popup-bg.png', offsetX: CENTER.x, offsetY: CENTER.y },
+  closeButton: { frame: 'close.png' },
 };
 //
 
@@ -102,5 +102,4 @@ export {
   ICloseButtonConfig,
 };
 //
-import { Images } from '../../../assets';
 import { CENTER } from '../../../constants/Constants';

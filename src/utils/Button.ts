@@ -1,6 +1,10 @@
 export class Button extends PIXI.Sprite {
   constructor(private config: IButtonConfig) {
-    super(PIXI.Texture.fromImage(config.upFrame));
+    super(PIXI.loader.resources['general'].textures[config.upFrame]);
+    // TEMPORARY
+    if (!PIXI.loader.resources['general'].textures[config.upFrame]) {
+      this.texture = PIXI.loader.resources[config.upFrame].texture;
+    }
     //
     this.configure();
   }

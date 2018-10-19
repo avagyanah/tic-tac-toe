@@ -59,9 +59,12 @@ class FameUser extends PIXI.Container {
   }
 
   private createName(style: PIXI.TextStyleOptions): void {
-    const nameLabel: PIXI.Text = new PIXI.Text(this.__name, style);
+    const stylek: any = { ...style };
+    stylek.fill = 0x626262;
+    const nameLabel: PIXI.Text = new PIXI.Text(this.__name, stylek);
     nameLabel.anchor.set(1, 0);
     nameLabel.x -= 40;
+
     this.addChild(nameLabel);
   }
 

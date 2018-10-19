@@ -12,14 +12,15 @@ export class BackgroundScene extends BaseScene {
   }
 
   private setBackground(): void {
-    const bg: PIXI.Sprite = PIXI.Sprite.fromFrame(Images.Bg.Name);
+    const bg: PIXI.Sprite = new PIXI.Sprite(
+      PIXI.loader.resources['general'].textures['bg.jpg'],
+    );
     bg.anchor.set(0.5);
     bg.position.set(CENTER.x, CENTER.y);
     this.addChild(bg);
   }
 }
 //
-import { Images } from '../../assets';
 import { CENTER } from '../../constants/Constants';
 import { IGame } from '../../constants/Types';
 import BaseScene from './BaseScene';

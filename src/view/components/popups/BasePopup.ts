@@ -105,7 +105,9 @@ export default class BasePopup extends PIXI.Container {
   }
 
   protected createBg(): PIXI.Sprite {
-    const bg: PIXI.Sprite = PIXI.Sprite.fromFrame(this.config.bg.frame);
+    const bg: PIXI.Sprite = new PIXI.Sprite(
+      PIXI.loader.resources['general'].textures[this.config.bg.frame],
+    );
     bg.anchor.set(0.5);
     bg.position.set(this.config.bg.offsetX, this.config.bg.offsetY);
     bg.interactive = true;

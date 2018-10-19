@@ -53,7 +53,7 @@ export class BaseOption extends PIXI.Container {
     this.titleLabel = new PIXI.Text(`${title} : `, {
       fontFamily: 'Octavio',
       fontSize: 80,
-      fill: 0x607272,
+      fill: 0x626262,
     });
     this.titleLabel.anchor.set(1, 0.5);
     this.addChild(this.titleLabel);

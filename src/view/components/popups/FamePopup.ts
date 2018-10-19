@@ -2,12 +2,12 @@ export default class FamePopup extends BasePopup {
   constructor() {
     super(famePopup);
     //
-    fameProxy.registerObserver(this);
+    // fameProxy.registerObserver(this);
     this.createUsersList(fameProxy.users);
   }
 
   public destroy(options?: boolean | PIXI.DestroyOptions): void {
-    fameProxy.removeObserver(this);
+    // fameProxy.removeObserver(this);
     //
     super.destroy(options);
   }
@@ -38,7 +38,7 @@ export default class FamePopup extends BasePopup {
     users.forEach((user: IUserVO, index: number) => {
       const fameUser: FameUser = new FameUser(user.name, user.rating, style);
       fameUser.position.set(
-        this.bg.x - this.bg.width / 2 + 50,
+        this.bg.x,
         this.bg.y - this.bg.height / 2 + 120 + 42 * index,
       );
       this.addChild(fameUser);
@@ -61,13 +61,13 @@ class FameUser extends PIXI.Container {
   private createName(style: PIXI.TextStyleOptions): void {
     const nameLabel: PIXI.Text = new PIXI.Text(this.__name, style);
     nameLabel.anchor.set(1, 0);
-    nameLabel.x += 100;
+    nameLabel.x -= 40;
     this.addChild(nameLabel);
   }
 
   private createRating(style: PIXI.TextStyleOptions): void {
     const ratingLabel: PIXI.Text = new PIXI.Text(`${this.__rating}`, style);
-    ratingLabel.x += 200;
+    ratingLabel.x += 40;
     this.addChild(ratingLabel);
   }
 }

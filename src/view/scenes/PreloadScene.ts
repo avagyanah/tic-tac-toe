@@ -1,6 +1,7 @@
 export const PRELOAD_SCENE_LOAD_COMPLETE: string = 'PreloadSceneLoadComplete';
 export const PRELOAD_SCENE_LOAD_PROGRESS: string = 'PreloadSceneLoadProgress';
 export const PRELOAD_SCENE_LOAD_START: string = 'PreloadSceneLoadStart';
+export let GENERAL_ASSETS: PIXI.loaders.TextureDictionary = null;
 //
 export class PreloadScene extends BaseScene {
   private progress: ProgressBar;
@@ -48,12 +49,18 @@ export class PreloadScene extends BaseScene {
   }
 
   private onInitialAssetsLoadComplete(): void {
+    this.initializeAtlasKeys();
+    //
     Register.emit(PRELOAD_SCENE_LOAD_COMPLETE);
+  }
+
+  private initializeAtlasKeys(): void {
+    GENERAL_ASSETS = PIXI.loader.resources[Atlases.General.Atlas.Name].textures;
   }
 }
 //
 import 'pixi-sound';
-import { Audios, Images } from '../../assets';
+import { Atlases, Audios, Images } from '../../assets';
 import { CENTER, GAME_HEIGHT } from '../../constants/Constants';
 import { IGame } from '../../constants/Types';
 import Register from '../../register/Register';

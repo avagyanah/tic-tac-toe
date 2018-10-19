@@ -1,8 +1,8 @@
 export class Button extends PIXI.Sprite {
   constructor(private config: IButtonConfig) {
-    super(PIXI.loader.resources['general'].textures[config.upFrame]);
+    super(GENERAL_ASSETS[config.upFrame]);
     // TEMPORARY
-    if (!PIXI.loader.resources['general'].textures[config.upFrame]) {
+    if (!GENERAL_ASSETS[config.upFrame]) {
       this.texture = PIXI.loader.resources[config.upFrame].texture;
     }
     //
@@ -30,4 +30,5 @@ export class Button extends PIXI.Sprite {
 }
 //
 import { IButtonConfig } from '../view/components/buttons/ButtonConfigs';
+import { GENERAL_ASSETS } from '../view/scenes/PreloadScene';
 import { playSound } from './Utils';

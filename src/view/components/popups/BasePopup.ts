@@ -106,7 +106,7 @@ export default class BasePopup extends PIXI.Container {
 
   protected createBg(): PIXI.Sprite {
     const bg: PIXI.Sprite = new PIXI.Sprite(
-      PIXI.loader.resources['general'].textures[this.config.bg.frame],
+      GENERAL_ASSETS[this.config.bg.frame],
     );
     bg.anchor.set(0.5);
     bg.position.set(this.config.bg.offsetX, this.config.bg.offsetY);
@@ -150,4 +150,5 @@ import { Back, Linear, TweenLite } from 'gsap';
 import { Audios } from '../../../assets';
 import { CENTER, GAME_HEIGHT, GAME_WIDTH } from '../../../constants/Constants';
 import { playSound } from '../../../utils/Utils';
+import { GENERAL_ASSETS } from '../../scenes/PreloadScene';
 import { IPopupConfig } from './PopupConfigs';

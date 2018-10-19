@@ -9,6 +9,7 @@ const GAME_HEIGHT: number = gameConfig.height;
 const CENTER: PIXI.Point = new PIXI.Point(GAME_WIDTH * 0.5, GAME_HEIGHT * 0.5);
 const FIRESTORE_PLAYERS_COLLECTION_NAME: string = 'players';
 const STORAGE_PLAYER_NAME: string = 'tic_tac_toe_playerData';
+
 //
 import { gameConfig } from './GameConfig';
 //

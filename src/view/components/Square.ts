@@ -4,7 +4,7 @@ export default class Square extends PIXI.Sprite {
   private _type: number;
 
   constructor() {
-    super(PIXI.loader.resources['general'].textures['square.png']);
+    super(GENERAL_ASSETS['square.png']);
     this.anchor.set(0.5);
   }
 
@@ -61,9 +61,7 @@ export default class Square extends PIXI.Sprite {
     }
   }
   private getImage(key: string): PIXI.Sprite {
-    const image: PIXI.Sprite = new PIXI.Sprite(
-      PIXI.loader.resources['general'].textures[key],
-    );
+    const image: PIXI.Sprite = new PIXI.Sprite(GENERAL_ASSETS[key]);
     image.anchor.set(0.5);
     return image;
   }
@@ -72,3 +70,4 @@ export default class Square extends PIXI.Sprite {
 import { Linear, TweenLite } from 'gsap';
 import { DisplayObject } from 'pixi.js';
 import { PlayerType } from '../../constants/Collections';
+import { GENERAL_ASSETS } from '../scenes/PreloadScene';

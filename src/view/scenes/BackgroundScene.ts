@@ -12,9 +12,7 @@ export class BackgroundScene extends BaseScene {
   }
 
   private setBackground(): void {
-    const bg: PIXI.Sprite = new PIXI.Sprite(
-      PIXI.loader.resources['general'].textures['bg.jpg'],
-    );
+    const bg: PIXI.Sprite = new PIXI.Sprite(GENERAL_ASSETS['bg.jpg']);
     bg.anchor.set(0.5);
     bg.position.set(CENTER.x, CENTER.y);
     this.addChild(bg);
@@ -24,3 +22,4 @@ export class BackgroundScene extends BaseScene {
 import { CENTER } from '../../constants/Constants';
 import { IGame } from '../../constants/Types';
 import BaseScene from './BaseScene';
+import { GENERAL_ASSETS } from './PreloadScene';

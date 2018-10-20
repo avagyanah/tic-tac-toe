@@ -1,11 +1,9 @@
 export class TTTGame extends PIXI.Application implements IGame {
-  public config: IGameConfig = gameConfig;
   public sceneManager: ISceneManager;
   public scaleManager: ScaleManager;
 
-  constructor(config: IGameConfig) {
+  constructor(public config: IGameConfig) {
     super(config);
-    this.config = config;
     //
     Register.Instance.init();
     //
@@ -21,10 +19,13 @@ export class TTTGame extends PIXI.Application implements IGame {
     this.sceneManager.add(UI_SCENE, UIScene);
     this.sceneManager.add(LOBBY_SCENE, LobbyScene);
     this.sceneManager.add(POPUP_SCENE, PopupScene);
+    this.sceneManager.add('TestScene', TestScene);
     this.sceneManager.start(PRELOAD_SCENE);
   }
 
   private prepareView(): void {
+    this.renderer = new PIXI.WebGLRenderer(this.config);
+    //
     this.scaleManager = new ScaleManager(
       this.view,
       this.config.width,
@@ -63,4 +64,5 @@ import { LobbyScene } from './view/scenes/LobbyScene';
 import { PopupScene } from './view/scenes/PopupScene';
 import { PreloadScene } from './view/scenes/PreloadScene';
 import SceneManager from './view/scenes/SceneManager';
+import { TestScene } from './view/scenes/TestScene';
 import { UIScene } from './view/scenes/UIScene';

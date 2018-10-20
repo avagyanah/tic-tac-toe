@@ -39,6 +39,8 @@
     "lodash.get": "^4.4.2",
     "lodash.sample": "^4.2.1",
     "moment": "^2.22.2",
+    "pixi-display": "^1.1.1",
+    "pixi-projection": "^0.2.1",
     "pixi-sound": "^2.0.3",
     "pixi.js": "^4.8.1",
     "store": "^2.0.12",

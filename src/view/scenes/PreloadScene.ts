@@ -25,6 +25,7 @@ export class PreloadScene extends BaseScene {
     loader.add('general', 'assets/atlases/general.json');
     loader.add('profile-icon', 'assets/images/profile-icon.png');
     loader.add('arc', 'assets/images/arc.png');
+    loader.add('circle', 'assets/images/circle.png');
     loader.add('ball', 'assets/images/ball.png');
     //
     loader.add(Audios.Sounds.ClickSound.Name, Audios.Sounds.ClickSound.Mp3URL);

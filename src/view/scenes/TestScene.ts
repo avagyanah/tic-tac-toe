@@ -1,89 +1,108 @@
 //
 export class TestScene extends BaseScene {
   private ball3d: PIXI.projection.Sprite3d;
+  private cam3D: PIXI.projection.Camera3d;
+  private staticLayer: PIXI.projection.Container3d;
+  private dynamicLayer: PIXI.projection.Container3d;
+  private downPoint: number;
 
   constructor(game: IGame) {
     super(game);
   }
 
   public create(): void {
-    this.setBackground();
-    //
     super.create();
     //
+    this.setBackground();
+    this.initCamera();
+    this.createBall();
     this.setListeners();
-    this.init3D();
     this.startTicker();
+    //
+    this.game.ticker.add(this.update, this);
   }
 
-  private init3D(): void {
-    const camera: PIXI.projection.Camera3d = new PIXI.projection.Camera3d();
-    camera.position.set(CENTER.x, CENTER.y);
-    camera.setPlanes(1000, 10, 10000, false);
-    this.game.stage.addChild(camera);
+  private update(): void {
+    this.dynamicLayer.position3d.z -= 20;
+  }
+
+  private initCamera(): void {
+    this.cam3D = new PIXI.projection.Camera3d();
+    this.cam3D.position.set(CENTER.x, CENTER.y);
+    this.cam3D.setPlanes(1000, 100, 1000, false);
+    this.game.stage.addChild(this.cam3D);
     //
-    const dynamicLayer: PIXI.projection.Container3d = new PIXI.projection.Container3d();
-    const staticLayer: PIXI.projection.Container3d = new PIXI.projection.Container3d();
-    //
-    camera.addChild(staticLayer);
-    camera.addChild(dynamicLayer);
-    //
-    const sprite3d: PIXI.projection.Sprite3d = new PIXI.projection.Sprite3d(
-      PIXI.loader.resources['profile-icon'].texture,
-    );
-    sprite3d.visible = false;
+    this.dynamicLayer = new PIXI.projection.Container3d();
+    this.cam3D.addChild(this.dynamicLayer);
+  }
+
+  private createBall(): void {
     this.ball3d = new PIXI.projection.Sprite3d(
       PIXI.loader.resources['ball'].texture,
     );
-    // const ball3d: PIXI.projection.Sprite3d = new PIXI.projection.Sprite3d(
-    //   PIXI.loader.resources['ball'].texture,
-    // );
     this.ball3d.anchor.set(0.5);
     this.ball3d.position3d.y += 200;
     this.ball3d.position3d.z += 300;
     //
-    dynamicLayer.addChild(sprite3d);
-    staticLayer.addChild(this.ball3d);
+    this.staticLayer = new PIXI.projection.Container3d();
+    this.cam3D.addChild(this.staticLayer);
+    this.staticLayer.addChild(this.ball3d);
     //
-
-    // TweenMax.to(staticLayer.euler, 2, {
-    //   repeatDelay: 0.2,
-    //   repeat: -1,
-    //   z: Math.PI * 2,
-    // });
-    // TweenMax.to(staticLayer.position3d, 2, {
-    //   repeatDelay: 0.2,
-    //   repeat: -1,
-    //   z: 1000,
-    // });
   }
 
-  private createWall(): void {}
+  private createWall(count: number): void {
+    for (let i: number = 0; i < count; ++i) {
+      const sprite3d: PIXI.projection.Sprite3d = new PIXI.projection.Sprite3d(
+        PIXI.loader.resources['profile-icon'].texture,
+      );
+      // sprite3d.rotation = i;
+      sprite3d.anchor.set(0.5);
+      sprite3d.position3d.y = 75;
+      sprite3d.position3d.z =
+        this.ball3d.position3d.z + 1000 - this.dynamicLayer.position3d.z;
+      this.dynamicLayer.addChild(sprite3d);
+    }
+  }
+
+  private createCircle(): void {
+    const sprite3d: PIXI.projection.Sprite3d = new PIXI.projection.Sprite3d(
+      PIXI.loader.resources['circle'].texture,
+    );
+    sprite3d.alpha = 0.7;
+    sprite3d.anchor.set(0.5);
+    sprite3d.position3d.z =
+      this.ball3d.position3d.z + 1000 - this.dynamicLayer.position3d.z;
+    this.dynamicLayer.addChild(sprite3d);
+  }
 
   private startTicker(): void {
     setInterval(() => {
-      this.createWall();
+      this.createCircle();
+    }, 500);
+    setInterval(() => {
+      this.createWall(Math.random() * 10);
     }, 1000);
   }
 
   private setListeners(): void {
     this.game.stage.interactive = true;
-    this.game.stage.on('pointerdown', this.onTouchDown, this);
-    this.game.stage.on('pointerup', this.onTouchUp, this);
+    this.game.stage.on('touchstart', this.onTouchDown, this);
+    this.game.stage.on('touchend', this.onTouchUp, this);
   }
 
   private onTouchDown(e: interaction.InteractionEvent): void {
-    this.game.stage.on('pointermove', this.onTouchMove, this);
+    this.game.stage.on('touchmove', this.onTouchMove, this);
+    this.downPoint = e.data.global.x;
   }
   private onTouchUp(e: interaction.InteractionEvent): void {
-    this.game.stage.off('pointermove', this.onTouchMove, this);
+    this.game.stage.off('touchmove', this.onTouchMove, this);
   }
   private onTouchMove(e: interaction.InteractionEvent): void {
-    // @ts-ignore
-    const moveX: number = e.data.originalEvent.movementX;
-    TweenLite.to(this.ball3d, 0.15, {
-      rotation: this.ball3d.rotation - moveX * 0.05,
+    TweenLite.to(this.ball3d, 0.05, {
+      rotation:
+        this.ball3d.rotation - (e.data.global.x - this.downPoint) * 0.03,
     });
+    this.downPoint = e.data.global.x;
   }
 
   private setBackground(): void {
@@ -95,6 +114,7 @@ export class TestScene extends BaseScene {
     this.addChild(bg);
   }
 }
+
 //
 // import 'pixi-display';
 import 'pixi-projection';

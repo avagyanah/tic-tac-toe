@@ -111,7 +111,7 @@ import {
 import { playerProxy } from '../../../../vo/PlayerProxy';
 import BasePopup from '../BasePopup';
 import { settingsPopup } from '../PopupConfigs';
-import { BaseOption } from './BaseOption';
+import { BaseOption } from './components/BaseOption';
 
 //
 class PlayerOption extends BaseOption {

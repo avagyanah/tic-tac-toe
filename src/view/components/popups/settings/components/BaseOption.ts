@@ -136,6 +136,6 @@ export class BaseOption extends PIXI.Container {
 }
 //
 import { Back, TweenLite, TweenMax } from 'gsap';
-import Register from '../../../../register/Register';
-import { Button } from '../../../../utils/Button';
-import { settingsPreviousBtn } from '../../buttons/ButtonConfigs';
+import Register from '../../../../../register/Register';
+import { Button } from '../../../../../utils/Button';
+import { settingsPreviousBtn } from '../../../buttons/ButtonConfigs';

@@ -4,5 +4,5 @@ export default class GameResolvedPopup extends BasePopup {
   }
 }
 //
-import BasePopup from './BasePopup';
-import { gameResolvedPopup } from './PopupConfigs';
+import BasePopup from '../BasePopup';
+import { gameResolvedPopup } from '../PopupConfigs';

@@ -141,21 +141,5 @@ function serialize(obj: any): any {
   return JSON.parse(JSON.stringify(obj));
 }
 
-export {
-  playSound,
-  playMusic,
-  generateProxy,
-  getEnumValues,
-  getEnumKeys,
-  getEnumKey,
-  getEnumValue,
-  arrayToLowercase,
-  arrayToUppercase,
-  setFirebaseDataAsync,
-  deleteFirebaseDataAsync,
-  getFirebaseDataAsync,
-  serialize,
-  setLocalStorageData,
-  getLocalStorageData,
-  deleteLocalStorageData,
-};
+export { playSound, playMusic, generateProxy, getEnumValues, getEnumKeys, getEnumKey, getEnumValue, arrayToLowercase, arrayToUppercase, setFirebaseDataAsync, deleteFirebaseDataAsync, getFirebaseDataAsync, serialize, setLocalStorageData, getLocalStorageData, deleteLocalStorageData, };
+

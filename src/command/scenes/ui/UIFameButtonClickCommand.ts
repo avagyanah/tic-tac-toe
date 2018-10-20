@@ -4,5 +4,5 @@ export function UIFameButtonClickCommand(): void {
 }
 //
 import { UI_SCENE } from '../../../constants/Constants';
-import FamePopup from '../../../view/components/popups/FamePopup';
+import FamePopup from '../../../view/components/popups/fame/FamePopup';
 import { PopupShowCommand } from '../popup/PopupShowCommand';

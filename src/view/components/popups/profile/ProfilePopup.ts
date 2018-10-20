@@ -58,4 +58,4 @@ import { getEnumKey } from '../../../../utils/Utils';
 import { playerProxy } from '../../../../vo/PlayerProxy';
 import BasePopup from '../BasePopup';
 import { profilePopup } from '../PopupConfigs';
-import { BaseField } from './BaseField';
+import { BaseField } from './components/BaseField';

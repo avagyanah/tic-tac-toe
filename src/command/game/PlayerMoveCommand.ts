@@ -9,15 +9,16 @@ export function PlayerMoveCommand(i: number): void {
   gameProxy.board = state.board;
   gameProxy.resolvedLine = state.resolvedState.line;
   gameProxy.winner = state.resolvedState.winner;
-  if (gameProxy.winner && gameProxy.winner === playerProxy.settings.player) {
-    // PopupShowCommand(GameResolvedPopup);
-    UpdateFameModelCommand();
-  }
+
+  // TEMPORARY
+  return;
+  gameProxy.winner && PopupShowCommand(GameResolvedPopup);
 }
 //
 import { Audios } from '../../assets';
 import { playSound } from '../../utils/Utils';
+import GameResolvedPopup from '../../view/components/popups/resolve/GameResolvedPopup';
 import { gameProxy } from '../../vo/GameProxy';
 import LB, { IGameState } from '../../vo/LB';
 import { playerProxy } from '../../vo/PlayerProxy';
-import { UpdateFameModelCommand } from '../UpdateFameModelCommand';
+import { PopupShowCommand } from '../scenes/popup/PopupShowCommand';

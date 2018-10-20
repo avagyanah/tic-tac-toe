@@ -51,11 +51,12 @@ export class TestScene extends BaseScene {
   }
 
   private createWall(count: number): void {
+    const rotation: number = Math.random();
     for (let i: number = 0; i < count; ++i) {
       const sprite3d: PIXI.projection.Sprite3d = new PIXI.projection.Sprite3d(
         PIXI.loader.resources['profile-icon'].texture,
       );
-      // sprite3d.rotation = i;
+      sprite3d.rotation = i * 0.7 + rotation;
       sprite3d.anchor.set(0.5);
       sprite3d.position3d.y = 75;
       sprite3d.position3d.z =
@@ -80,7 +81,7 @@ export class TestScene extends BaseScene {
       this.createCircle();
     }, 500);
     setInterval(() => {
-      this.createWall(Math.random() * 10);
+      this.createWall(_sample([3, 4, 5, 6, 7]));
     }, 1000);
   }
 
@@ -124,3 +125,4 @@ import BaseScene from './BaseScene';
 import { GENERAL_ASSETS } from './PreloadScene';
 import { WebGLRenderer, interaction } from 'pixi.js';
 import { TweenLite, Back, TweenMax } from 'gsap';
+import _sample from 'lodash.sample';

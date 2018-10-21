@@ -9,8 +9,7 @@ export function GameSceneStartCommand(): void {
     0,
   );
   gameProxy.difficulty = 1;
-  //
-  LB.initialize(gameProxy.size);
+  LB.initialize(gameProxy.board);
 }
 //
 import { Audios } from '../../../assets';

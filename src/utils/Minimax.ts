@@ -1,93 +1,47 @@
-// import Board from 'util/tictactoe/Board.js';
-// import Player from 'util/tictactoe/Player.js';
+import { Leaf, Node, Tree } from './Tree';
 
-// class ComputerPlayer extends Player {
-//   constructor(mark) {
-//     super(mark, false);
-//     this.humanMark = mark === 'x' ? 'o' : 'x';
-//   }
+function _minimax(
+  tree: Tree<number>,
+  isMaxPlayer: boolean,
+  alpha: number,
+  beta: number,
+): number {
+  if (tree instanceof Leaf) {
+    return tree.value;
+  }
+  console.warn('RET');
 
-//   choosePosition(game) {
-//     const bestMove = this.minimax(game.board);
-//     game.makeMove(bestMove.pos);
-//   }
+  let best: number = isMaxPlayer ? alpha : beta;
 
-//   minimax(board) {
-//     let bestMove = { utility: Number.NEGATIVE_INFINITY };
-//     for (let i = 0; i < 3; i++) {
-//       for (let j = 0; j < 3; j++) {
-//         if (!board[i][j]) {
-//           const simulatedBoard = Board.generateSimBoard(
-//             board,
-//             [i, j],
-//             this.mark,
-//           );
-//           const move = this.minVal(simulatedBoard);
-//           if (move > bestMove.utility) {
-//             bestMove.utility = move;
-//             bestMove.pos = [i, j];
-//           }
-//         }
-//       }
-//     }
-//     return bestMove;
-//   }
+  for (let childNode of (<Node<number>>tree).children) {
+    const val: number = _minimax(childNode, !isMaxPlayer, alpha, beta);
 
-//   minVal(board) {
-//     if (board.gameOver()) {
-//       if (board.won(this.mark)) {
-//         return 1;
-//       } else if (board.tie()) {
-//         return 0;
-//       }
-//       return -1;
-//     }
-//     let utility = Number.MAX_VALUE;
-//     for (let i = 0; i < 3; i++) {
-//       for (let j = 0; j < 3; j++) {
-//         if (!board.board[i][j]) {
-//           const simulatedBoard = Board.generateSimBoard(
-//             board.board,
-//             [i, j],
-//             this.humanMark,
-//           );
-//           const move = this.maxVal(simulatedBoard);
-//           if (move < utility) {
-//             utility = move;
-//           }
-//         }
-//       }
-//     }
-//     return utility;
-//   }
+    if (isMaxPlayer) {
+      if (val > best) {
+        best = val;
+      }
+      if (val >= beta) {
+        break;
+      }
+      if (val > alpha) {
+        alpha = val;
+      }
+    } else {
+      if (val < best) {
+        best = val;
+      }
+      if (val <= alpha) {
+        break;
+      }
+      if (val < beta) {
+        beta = val;
+      }
+    }
+  }
 
-//   maxVal(board) {
-//     if (board.gameOver()) {
-//       if (board.won(this.humanMark)) {
-//         return -1;
-//       } else if (board.tie()) {
-//         return 0;
-//       }
-//       return 1;
-//     }
-//     let utility = Number.NEGATIVE_INFINITY;
-//     for (let i = 0; i < 3; i++) {
-//       for (let j = 0; j < 3; j++) {
-//         if (!board.board[i][j]) {
-//           const simulatedBoard = Board.generateSimBoard(
-//             board.board,
-//             [i, j],
-//             this.mark,
-//           );
-//           const move = this.minVal(simulatedBoard);
-//           if (move > utility) {
-//             utility = move;
-//           }
-//         }
-//       }
-//     }
-//     return utility;
-//   }
-// }
+  return best;
+}
 
-// export default ComputerPlayer;
+export function minimax(tree: Tree<number>, isMaxPlayer: boolean): number {
+  return _minimax(tree, isMaxPlayer, -Infinity, Infinity);
+}

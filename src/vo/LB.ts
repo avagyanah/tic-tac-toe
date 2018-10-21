@@ -1,42 +1,81 @@
 import { PlayerType } from '../constants/Collections';
-
-/* 2 0 1 */
-/* 0 1 2 */
-/* 1 0 0 */
+const board3: number[] = [1, 0, 1, -1, -1, 0, 0, 0, 0];
+const board4: number[] = [1, 0, 1, 1, -1, -1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+//
 export interface IGameState {
   board: number[];
-  resolvedState: IResolvedState;
+  state: IState;
 }
 
-interface IResolvedState {
+interface IState {
   line: number[];
   winner: PlayerType;
 }
 
 export default class LB {
-  public static initialize(size: number): void {
-    this.winingLines = this.getWiningLines(size);
+  public static initialize(board: number[]): void {
+    this.winLines = this.getWiningLines(board.length);
+    console.warn(this.winLines);
   }
 
+  public static minimax(board: number[]): IGameState {
+    const player: PlayerType = this.definePlayer(board);
+    // LB.getMax(board, player);
+    return;
+  }
+
+  // public static getMax(board: number[], player: PlayerType): IGameState {
+  //   const isTerminal: boolean = LB.isTerminal(board);
+  //   if (isTerminal) {
+  //     return { board, state };
+  //   }
+
+  //   const state: IState = LB.getResolvedState(board);
+  //   if (state.winner) {
+  //     return { board, state };
+  //   }
+  //   let value: number = -Infinity;
+  //   const a: any = LB.getFirstEmpty(board);
+  //   // tslint:disable-next-line
+  //   for (let i: number = 0; i < board.length; ++i) {
+  //     value = Math.max(value, LB.getMin(board));
+  //   }
+  //   return value;
+  // }
+  // public static getMin(board: number[], player: PlayerType): number {
+  //   const isTerminal: boolean = LB.isTerminal(board);
+  //   if (isTerminal) {
+  //     return;
+  //   }
+  //   let value: number = +Infinity;
+  //   // tslint:disable-next-line
+  //   for (let i: number = 0; i < board.length; ++i) {
+  //     value = Math.min(value, LB.getMax(board));
+  //   }
+  //   return value;
+  // }
+
+  //
+  //
+  // _________________________________________
   public static move(board: number[]): IGameState {
-    let resolvedState: IResolvedState = this.checkForResolvedGame(board);
-    if (resolvedState.winner) {
-      return { board, resolvedState };
+    let state: IState = this.getResolvedState(board);
+    if (state.winner) {
+      return { board, state };
     }
     //
     const player: PlayerType = this.definePlayer(board);
     const index: number = this.getFirstEmpty(board);
     board[index] = player;
-    resolvedState = this.checkForResolvedGame(board);
-    // get move by minmax depends on depth/difficulty
-    return { board, resolvedState };
+    state = this.getResolvedState(board);
+    return { board, state };
   }
 
-  private static winingLines: number[][] = [];
+  private static winLines: number[][];
 
-  //
-  private static checkForResolvedGame(board: number[]): IResolvedState {
-    for (const line of this.winingLines) {
+  private static getResolvedState(board: number[]): IState {
+    const winLines: number[][] = this.getWiningLines(Math.sqrt(board.length));
+    for (const line of winLines) {
       const isOver: boolean = line.every((i: number) => {
         return board[i] && board[i] === board[line[0]];
       });
@@ -45,6 +84,19 @@ export default class LB {
       }
     }
     return { line: [], winner: null };
+  }
+
+  private static isTerminal(board: number[]): boolean {
+    const winLines: number[][] = this.getWiningLines(Math.sqrt(board.length));
+    for (const line of winLines) {
+      const isOver: boolean = line.every((i: number) => {
+        return board[i] && board[i] === board[line[0]];
+      });
+      if (isOver) {
+        return true;
+      }
+    }
+    return false;
   }
 
   private static getWiningLines(n: number): number[][] {

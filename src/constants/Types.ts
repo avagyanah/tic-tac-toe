@@ -103,3 +103,13 @@ export interface IAudioConfig {
   options?: string | PlayOptions | CompleteCallback;
 }
 //
+export interface IGameState {
+  board: number[];
+  state: IState;
+}
+//
+export interface IState {
+  line: number[];
+  winner: PlayerType;
+  draw: boolean;
+}

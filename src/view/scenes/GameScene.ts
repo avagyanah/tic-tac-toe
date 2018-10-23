@@ -44,7 +44,6 @@ export class GameScene extends BaseScene {
       for (let j: number = 0; j < size; ++j) {
         const square: Square = new Square();
         square.position.set(j * square.width * 0.95, i * square.height * 0.925);
-        square.interactive = true;
         square.buttonMode = true;
         square.once('pointerdown', () => {
           Register.emit(SQUARE_CLICK, i * size + j);
@@ -59,11 +58,41 @@ export class GameScene extends BaseScene {
       GAME_WIDTH + this.board[0].width / 2,
       CENTER.y - (board.height - this.board[0].height) / 2,
     );
+    //
     this.board.forEach((square: Square, index: number) => {
+      if (index === this.board.length - 1) {
+        this.tweenToCenter(
+          square,
+          index * 0.03,
+          square.x - CENTER.x - board.width / 2,
+        ).then(() => {
+          this.board.forEach((el: Square) => {
+            el.interactive = true;
+          });
+        });
+      } else {
+        this.tweenToCenter(
+          square,
+          index * 0.03,
+          square.x - CENTER.x - board.width / 2,
+        );
+      }
+    });
+  }
+
+  private tweenToCenter(
+    square: Square,
+    delay: number,
+    toX: number,
+  ): Promise<void> {
+    return new Promise((resolve: any) => {
       TweenLite.to(square, 0.5, {
-        x: square.x - CENTER.x - board.width / 2,
-        delay: index * 0.03,
+        x: toX,
+        delay,
         ease: Expo.easeOut,
+        onComplete: () => {
+          resolve();
+        },
       });
     });
   }
@@ -71,6 +100,7 @@ export class GameScene extends BaseScene {
   private disableBoardInput(): void {
     this.board.forEach((square: Square) => (square.interactive = false));
   }
+
   private drawResolvedLine(resolvedLine: number[], winner: PlayerType): void {
     const color: number =
       winner === playerProxy.settings.player ? 0x0ccc55 : 0xf45a5a;

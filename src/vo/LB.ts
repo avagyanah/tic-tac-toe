@@ -1,94 +1,59 @@
 import { PlayerType } from '../constants/Collections';
-const board3: number[] = [1, 0, 1, -1, -1, 0, 0, 0, 0];
-const board4: number[] = [1, 0, 1, 1, -1, -1, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+import { IGameState, IState } from '../constants/Types';
 //
-export interface IGameState {
-  board: number[];
-  state: IState;
-}
-
-interface IState {
-  line: number[];
-  winner: PlayerType;
-}
 
 export default class LB {
-  public static initialize(board: number[]): void {
-    this.winLines = this.getWiningLines(board.length);
-    console.warn(this.winLines);
+  public static initialize(size: number, difficulty: number): void {
+    LB.winLines = LB.getWiningLines(size);
+    LB.depth = 0;
+    LB.difficulty = difficulty;
   }
 
   public static minimax(board: number[]): IGameState {
-    const player: PlayerType = this.definePlayer(board);
-    // LB.getMax(board, player);
-    return;
-  }
-
-  // public static getMax(board: number[], player: PlayerType): IGameState {
-  //   const isTerminal: boolean = LB.isTerminal(board);
-  //   if (isTerminal) {
-  //     return { board, state };
-  //   }
-
-  //   const state: IState = LB.getResolvedState(board);
-  //   if (state.winner) {
-  //     return { board, state };
-  //   }
-  //   let value: number = -Infinity;
-  //   const a: any = LB.getFirstEmpty(board);
-  //   // tslint:disable-next-line
-  //   for (let i: number = 0; i < board.length; ++i) {
-  //     value = Math.max(value, LB.getMin(board));
-  //   }
-  //   return value;
-  // }
-  // public static getMin(board: number[], player: PlayerType): number {
-  //   const isTerminal: boolean = LB.isTerminal(board);
-  //   if (isTerminal) {
-  //     return;
-  //   }
-  //   let value: number = +Infinity;
-  //   // tslint:disable-next-line
-  //   for (let i: number = 0; i < board.length; ++i) {
-  //     value = Math.min(value, LB.getMax(board));
-  //   }
-  //   return value;
-  // }
-
-  //
-  //
-  // _________________________________________
-  public static move(board: number[]): IGameState {
-    let state: IState = this.getResolvedState(board);
-    if (state.winner) {
-      return { board, state };
-    }
-    //
-    const player: PlayerType = this.definePlayer(board);
-    const index: number = this.getFirstEmpty(board);
-    board[index] = player;
-    state = this.getResolvedState(board);
+    const player: PlayerType = LB.definePlayer(board);
+    board = LB.getMax([...board], player);
+    const state: IState = LB.getResolvedState(board);
     return { board, state };
   }
 
-  private static winLines: number[][];
-
-  private static getResolvedState(board: number[]): IState {
-    const winLines: number[][] = this.getWiningLines(Math.sqrt(board.length));
-    for (const line of winLines) {
-      const isOver: boolean = line.every((i: number) => {
-        return board[i] && board[i] === board[line[0]];
-      });
-      if (isOver) {
-        return { line, winner: board[line[0]] };
-      }
+  public static getMax(board: number[], player: PlayerType): number[] {
+    const isTerminal: boolean = LB.isTerminal(board);
+    if (isTerminal) {
+      return board;
     }
-    return { line: [], winner: null };
+
+    const empties: number[] = LB.getEmpties(board);
+    for (const el of empties) {
+      board[el] = player;
+      LB.getMin(board, LB.getOpponent(player));
+    }
+
+    return board;
+  }
+  public static getMin(board: number[], player: PlayerType): number[] {
+    const isTerminal: boolean = LB.isTerminal(board);
+    if (isTerminal) {
+      return board;
+    }
+
+    const empties: number[] = LB.getEmpties(board);
+    for (const el of empties) {
+      board[el] = player;
+      LB.getMax(board, LB.getOpponent(player));
+    }
+
+    return board;
   }
 
+  private static winLines: number[][];
+  private static depth: number;
+  private static difficulty: number;
+
   private static isTerminal(board: number[]): boolean {
-    const winLines: number[][] = this.getWiningLines(Math.sqrt(board.length));
-    for (const line of winLines) {
+    if (LB.isDraw(board)) {
+      return true;
+    }
+    for (const line of LB.winLines) {
       const isOver: boolean = line.every((i: number) => {
         return board[i] && board[i] === board[line[0]];
       });
@@ -130,5 +95,38 @@ export default class LB {
   private static getFirstEmpty(board: number[]): number {
     const avail: number = board.find((i: number) => i === 0);
     return board.indexOf(avail);
+  }
+
+  private static getResolvedState(board: number[]): IState {
+    if (LB.isDraw(board)) {
+      return { line: [], winner: null, draw: true };
+    }
+    for (const line of LB.winLines) {
+      const isOver: boolean = line.every((i: number) => {
+        return board[i] && board[i] === board[line[0]];
+      });
+      if (isOver) {
+        return { line, winner: board[line[0]], draw: true };
+      }
+    }
+    return { line: [], winner: null, draw: true };
+  }
+
+  private static getEmpties(board: number[]): number[] {
+    const empties: number[] = [];
+    board.forEach((i: number, index: number) => {
+      i === 0 && empties.push(index);
+    });
+    return empties;
+  }
+
+  private static getOpponent(player: PlayerType): PlayerType {
+    return player === PlayerType.X ? PlayerType.O : PlayerType.X;
+  }
+
+  private static isDraw(board: number[]): boolean {
+    return board.every((i: number) => {
+      return i !== 0;
+    });
   }
 }

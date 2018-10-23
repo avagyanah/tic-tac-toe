@@ -13,6 +13,10 @@ export class LobbyScene extends BaseScene {
     this.createPlayText();
     //
     super.create();
+
+    setTimeout(() => {
+      Register.emit(LOBBY_SCENE_PLAY_CLICK);
+    }, 10);
   }
 
   public async sleep(): Promise<void> {

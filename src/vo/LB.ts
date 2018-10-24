@@ -30,6 +30,7 @@ export default class LB {
 
     return board;
   }
+
   public static getMin(board: number[], player: PlayerType): number[] {
     const isTerminal: boolean = LB.isTerminal(board);
     if (isTerminal) {

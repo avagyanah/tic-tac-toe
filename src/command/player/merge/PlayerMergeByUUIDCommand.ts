@@ -1,7 +1,6 @@
-export function PlayerMergeByUUIDCommand(): Promise<void> {
-  return PlayerSyncRemoteByUUIDCommand().then(() => {
-    PlayerSaveLocalCommand();
-  });
+export async function PlayerMergeByUUIDCommand(): Promise<void> {
+  await PlayerSyncRemoteByUUIDCommand();
+  PlayerSaveLocalCommand();
 }
 //
 import { PlayerSaveLocalCommand } from '../save/PlayerSaveLocalCommand';

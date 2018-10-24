@@ -141,7 +141,13 @@ function serialize(obj: any): any {
   return JSON.parse(JSON.stringify(obj));
 }
 
+async function initializeAsync(): Promise<void> {
+  // @ts-ignore
+  await FBInstant.initializeAsync();
+}
+
 export {
+  initializeAsync,
   playSound,
   playMusic,
   generateProxy,

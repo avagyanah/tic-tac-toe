@@ -4,8 +4,10 @@ declare global {
   // tslint:disable-next-line
   interface Window {
     TTT: IGame;
+    FBInstant: any;
   }
 }
+
 //
 export interface IGame extends PIXI.Application {
   config: IGameConfig;

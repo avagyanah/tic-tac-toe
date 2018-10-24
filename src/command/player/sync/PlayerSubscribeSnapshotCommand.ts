@@ -1,5 +1,5 @@
 export async function PlayerSubscribeSnapshotCommand(): Promise<void> {
-  firebase
+  await firebase
     .firestore()
     .doc(`${FIRESTORE_PLAYERS_COLLECTION_NAME}/${playerProxy.user.id}`)
     .onSnapshot((doc: firebase.firestore.DocumentSnapshot) => {

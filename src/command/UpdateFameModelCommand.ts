@@ -1,6 +1,6 @@
 export async function UpdateFameModelCommand(): Promise<void> {
   const users: any[] = [];
-  firebase
+  await firebase
     .firestore()
     .collection(FIRESTORE_PLAYERS_COLLECTION_NAME)
     .orderBy('user.rating', 'desc')

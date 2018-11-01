@@ -15,13 +15,13 @@ export default class BaseScene extends PIXI.Container implements IScene {
   }
 
   public wake(): void {
-    this.renderable = true;
+    this.renderable = this.visible = true;
     //
     Register.emit(`${this.constructor.name}Wake`);
   }
 
   public sleep(): void {
-    this.renderable = false;
+    this.renderable = this.visible = false;
     //
     Register.emit(`${this.constructor.name}Sleep`);
   }

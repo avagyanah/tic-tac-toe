@@ -42,7 +42,6 @@ export default class Square extends PIXI.Sprite {
         this.draw0();
         break;
       default:
-        this.clear();
         break;
     }
   }

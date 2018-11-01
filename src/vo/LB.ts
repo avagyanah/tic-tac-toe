@@ -10,58 +10,73 @@ export default class LB {
 
   public static minimax(board: number[]): IGameState {
     const player: PlayerType = LB.definePlayer(board);
-    console.warn(LB.getMax(board, player));
+    // console.warn(LB.getMax(board, player));
     const state: IState = LB.getResolvedState(board);
     return { board, state };
   }
 
-  public static getMax(board: number[], player: PlayerType): number {
-    const values: number[] = [];
-    if (LB.isDraw(board)) {
-      values.push(0);
-    } else if (LB.isTerminal(board)) {
-      const state: IState = LB.getResolvedState(board);
-      if (state.winner === player) {
-        values.push(1);
-      } else {
-        values.push(-1);
-      }
-    } else {
-      const emptyIndexes: number[] = LB.getEmptyIndexes(board);
-      emptyIndexes.forEach((i: number) => {
-        const newBoard: number[] = [...board];
-        newBoard[i] = player;
-        const min: number = LB.getMin(newBoard, LB.getOpponent(player));
-        values.push(min);
-      });
-    }
+  // public static getMax(
+  //   board: number[],
+  //   player: PlayerType,
+  // ): { board: number[]; max: number } {
+  //   const newBoard: number[] = [...board];
+  //   const states: Map<number, number[]> = new Map();
+  //   if (LB.isDraw(board)) {
+  //     states.set(-10, board);
+  //   } else if (LB.isTerminal(board)) {
+  //     const state: IState = LB.getResolvedState(board);
+  //     if (state.winner === player) {
+  //       states.set(10, board);
+  //     } else {
+  //       states.set(-20, board);
+  //     }
+  //   } else {
+  //     const emptyIndexes: number[] = LB.getEmptyIndexes(board);
+  //     emptyIndexes.forEach((i: number) => {
+  //       newBoard[i] = player;
+  //       const state: { board: number[]; min: number } = LB.getMin(
+  //         newBoard,
+  //         LB.definePlayer(newBoard),
+  //       );
+  //       states.set(state.min, board);
+  //     });
+  //   }
+  //   // @ts-ignore
+  //   const max: number = Math.max(...Object.keys(states));
+  //   return { board: states.get(max), max };
+  // }
 
-    return Math.max(...values);
-  }
-
-  public static getMin(board: number[], player: PlayerType): number {
-    const values: number[] = [];
-    if (LB.isDraw(board)) {
-      values.push(0);
-    } else if (LB.isTerminal(board)) {
-      const state: IState = LB.getResolvedState(board);
-      if (state.winner === player) {
-        values.push(1);
-      } else {
-        values.push(-1);
-      }
-    } else {
-      const emptyIndexes: number[] = LB.getEmptyIndexes(board);
-      emptyIndexes.forEach((i: number) => {
-        const newBoard: number[] = [...board];
-        newBoard[i] = player;
-        const max: number = LB.getMax(newBoard, LB.getOpponent(player));
-        values.push(max);
-      });
-    }
-
-    return Math.min(...values);
-  }
+  // public static getMin(
+  //   board: number[],
+  //   player: PlayerType,
+  // ): { board: number[]; min: number } {
+  //   const newBoard: number[] = [...board];
+  //   const states: Map<number, number[]> = new Map();
+  //   if (LB.isDraw(board)) {
+  //     states.set(-10, board);
+  //   } else if (LB.isTerminal(board)) {
+  //     const state: IState = LB.getResolvedState(board);
+  //     if (state.winner === player) {
+  //       states.set(10, board);
+  //     } else {
+  //       states.set(-20, board);
+  //     }
+  //   } else {
+  //     const emptyIndexes: number[] = LB.getEmptyIndexes(board);
+  //     emptyIndexes.forEach((i: number) => {
+  //       newBoard[i] = player;
+  //       const state: { board: number[]; max: number } = LB.getMax(
+  //         newBoard,
+  //         LB.definePlayer(newBoard),
+  //       );
+  //       states.set(state.max, board);
+  //     });
+  //   }
+  //   // @ts-ignore
+  //   const min: number = Math.min(...Object.keys(states));
+  //   console.warn(Object.keys(states));
+  //   return { board: states.get(min), min };
+  // }
 
   private static winLines: number[][];
   private static depth: number;

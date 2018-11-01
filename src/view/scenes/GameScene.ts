@@ -33,6 +33,7 @@ export class GameScene extends BaseScene {
   private startGame(boardSize: number): void {
     this.createBoard(boardSize);
   }
+
   private stopGame(winner: PlayerType): void {
     this.disableBoardInput();
     this.drawResolvedLine(gameProxy.resolvedLine, winner);
@@ -65,11 +66,7 @@ export class GameScene extends BaseScene {
           square,
           index * 0.03,
           square.x - CENTER.x - board.width / 2,
-        ).then(() => {
-          this.board.forEach((el: Square) => {
-            el.interactive = true;
-          });
-        });
+        );
       } else {
         this.tweenToCenter(
           square,
@@ -112,19 +109,11 @@ export class GameScene extends BaseScene {
   }
 
   private updateBoard(board: number[]): void {
-    for (let i: number = 0; i < board.length; ++i) {
-      const square: Square = this.board[i];
-      const el: number = board[i];
-      if (square.type === el) {
-        continue;
-      } else {
-        square.type = el;
-      }
-      //
-      if (el !== 0) {
-        square.interactive = false;
-      }
-    }
+    board.forEach((el: number, index: number) => {
+      const square: Square = this.board[index];
+      square.type = el;
+      square.interactive = el !== 0 ? false : true;
+    });
   }
 }
 //
